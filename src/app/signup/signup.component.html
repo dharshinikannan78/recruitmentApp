@@ -165,26 +165,14 @@
                         *ngIf="loginForm.controls['countryresiding'].touched && loginForm.hasError('required','countryresiding')">*Field
                         is required</span>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label"> Citizenship</label>
-                    <input type="text" formControlName="citizenship" class="form-control"
-                        placeholder="Mention your citizenship">
-
-                    <span class="text-danger"
-                        *ngIf="loginForm.controls['citizenship'].touched && loginForm.hasError('required','citizenship')">*Field
-                        is required</span>
-                </div>
-
+               
                 <div class="mb-3">
                     <label for="formFileMultiple" class="form-label">Resume</label>
                     <input class="input-box" formControlName="resume" value="uplode file" type="file"
                         id="formFileMultiple">
                 </div>
 
-                <div class="mb-3">
-                    <label for="formFileMultiple" class="form-label">Any Cert</label>
-                    <input class="input-box" formControlName="anyCert" type="file" id="formFileMultiple">
-                </div>
+                
 
                 <div class="mb-3">
                     <label for="formFileMultiple" class="form-label">Additional Cert</label>
