@@ -1,0 +1,103 @@
+.title{font-family: "poppins", sans-serif;
+    font-weight: 1000;
+    text-align: center; 
+  }
+  
+  .content{
+      padding: 0px;
+      // border-radius: 100px;
+  }
+  
+  table, tr, th, td{
+  border: 0.5px solid rgb(223, 233, 240);
+  text-align: center;
+  padding: 15px 19px;
+  font-family: "poppins", sans-serif;
+  font-size: large;
+  
+  
+  }
+  
+  .modal-header{
+    background-color: #1D66DE;
+  }
+  
+  .modal-title{
+      font-family: "poppins", sans-serif;
+      font-weight: 800;
+      font-size: calc(1.375rem + 0.5vw);   
+      text-align: center;
+      color: white;
+     
+  }
+  
+  .modal-content{
+      padding: 30px;
+  }
+  //     .modal-content{
+  //     background: hsla(205, 46%, 30%, 1);
+  //     background: linear-gradient(90deg, rgb(170, 188, 201) 0%,rgb(236, 235, 240) 100%);
+  // }
+  
+  th{
+      font-family: "poppins", sans-serif;
+      font-weight: 800;
+      font-size: medium;
+  }
+  td{
+      font-family: tiny, sans-serif;
+      font-weight: 500;
+  }
+  .modal-body{
+      color: #dee6f5;
+  }
+  button {
+      padding: 10px 25px; 
+      background-color: #457EFF;
+      border-color: rgb(252, 250, 250);
+  }
+  // .wave{
+  // position: relative;
+  // bottom: 0;
+  // left: 0;    
+  // }
+  // @media (max-width:500px){
+  //     .container{
+  //        width: 50%;
+  //     }}
+  .btn1{
+      // padding: 2px 15px; 
+      background-color: #F77555;
+      border-radius: 15px;
+      padding: 5%;
+      font-weight: 200;
+      border: none;
+      color: white;
+      line-height: 1;
+  }
+  // .btn1:hover{
+  //     background-color:rgb(228, 155, 20)
+  // }
+  // .fas{
+  //     padding: 0 2px;
+  // }
+      // .content{
+        
+      //             background: hsla(205, 46%, 30%, 1);
+      //              background: linear-gradient(90deg, rgb(234, 240, 247) 0%,rgb(243, 238, 234) 100%);
+          //  background-image: url("../../assets/bckgrnd.jpg");
+          //  opacity: 0.5;
+      // }
+      .table-responsive{
+          padding: 30px;
+      }
+      .wrap{
+          padding: 20px;
+        
+      }
+      @media (max-width:500px){
+          .dcenter {
+              display: unset;
+          } 
+        }
+     
