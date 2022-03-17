@@ -16,7 +16,8 @@ h1
     font-family: 'Times New Roman', Times, serif;
     font-weight: bold;
     color: #457EFF;   
-    font-size: calc(1.100rem + 0.7vw);     
+    font-size: calc(1.100rem + 0.7vw);  
+    text-transform: uppercase;   
 }
   .dcenter
    {
@@ -25,9 +26,6 @@ h1
   justify-content: center;
 }
 
-.form-control{
-    // box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
-}
 .input-box{
   
     border-radius: 50px;
@@ -60,7 +58,10 @@ label{
         //   font-size: small;
           color: #457EFF;
           font-weight:bold;
+          text-transform: uppercase;
  }
+ 
+
   
  .formField.userType .radioWrap {
     display: -webkit-box;
@@ -69,7 +70,7 @@ label{
     margin-top: 3px;
 }
 .formField.userType .radioWrap .optionWrap {
-    // position: relative;
+     position: relative;
     cursor: pointer;
     color: #457eff;
     border: 1px solid #d3e1ea;
@@ -90,16 +91,13 @@ p{
 .formField.userType .radioWrap .optionWrap:last-child {
     margin-left: 15px;
 }
-.formField.userType  .radioWrap .optionWrap {
-    border: 1px solid #dddde6;
-}
 .formField.userType .radioWrap .optionWrap:focus {
     background-color: #e2e5ec;
     border: #457EFF;
 }
-// .formField.userType .radioWrap .optionWrap.selected {
-//     border: 1px solid #457eff;
-// }
+.formField.userType .radioWrap .optionWrap.selected {
+    border: 1px solid #457eff;
+}
 .formField.currentCity .locationWrapper .outsideIndiaWrapper {
     position: absolute;
     top: -5px;
@@ -114,7 +112,7 @@ p{
     -ms-flex-direction: row-reverse;
     flex-direction: row-reverse;
   }
-  .locationWrapper  {
+  .locationWrapper {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
   }
@@ -149,3 +147,23 @@ input.ng-touched.ng-invalid{
     border-radius: 28px;
     padding: 0;
 }
+
+.primary {
+    .optionWrap {
+        border: 5px solid #457EFF !important;
+    }
+}
+.secondary {
+    .optionWrap {
+        border: 5px solid #457EFF !important;
+    }
+}
+// .bi-check-square-fill:before {
+//     content: "\F111";
+// }
+// .bi:before {
+//     // font-family: icon!important;
+//     font-style: normal;
+//     font-weight: 400!important;
+//     vertical-align: top;
+// }

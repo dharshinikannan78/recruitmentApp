@@ -1,16 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import {MAT_FORM_FIELD, MatFormField, MatFormFieldControl} from '@angular/material/form-field';
 import { FormBuilder,FormGroup,Validators } from '@angular/forms';
-
-
 @Component({
-  selector: 'app-recruitment-page',
-  templateUrl: './recruitment-page.component.html',
-  styleUrls: ['./recruitment-page.component.scss']
+  selector: 'app-admin-panel',
+  templateUrl: './admin-panel.component.html',
+  styleUrls: ['./admin-panel.component.scss']
 })
-export class RecruitmentPageComponent implements OnInit {
-  
-public loginForm! : FormGroup
+export class AdminPanelComponent implements OnInit {
+
+  public loginForm! : FormGroup
   constructor(private formBuilder : FormBuilder) { }
 
   ngOnInit(): void {

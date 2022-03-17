@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PopupComponent } from './popup/popup.component';
-import { RecruitmentPageComponent } from './recruitment-page/recruitment-page.component';
-import { SignupComponent } from './signup/signup.component';
+import { CandidateRegistrationComponent } from './candidate-registration/candidate-registration.component';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { AdminCandidateTableComponent } from './admin-candidate-table/admin-candidate-table.component';
 const routes: Routes = [
-  {path: 'login', component: RecruitmentPageComponent},
-  {path:'',component:SignupComponent},
-  {path:'popup',component:PopupComponent}
+  
+  { path:'',component:CandidateRegistrationComponent},
+  { path:'adminpanel',component:AdminPanelComponent},
+ {path: 'table',component:AdminCandidateTableComponent}
 ];
 
 @NgModule({

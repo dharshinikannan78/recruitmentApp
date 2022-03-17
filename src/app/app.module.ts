@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RecruitmentPageComponent } from './recruitment-page/recruitment-page.component';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -14,19 +13,21 @@ import { MatCommonModule } from '@angular/material/core';
 import { MatOptionModule } from '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { SignupComponent } from './signup/signup.component';
-import { PopupComponent } from './popup/popup.component';
-
+import { CandidateRegistrationComponent } from './candidate-registration/candidate-registration.component';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { AdminCandidateTableComponent } from './admin-candidate-table/admin-candidate-table.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    RecruitmentPageComponent,
-    SignupComponent,
-    PopupComponent
+    CandidateRegistrationComponent,
+    AdminPanelComponent,
+    AdminCandidateTableComponent
+    
   ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -41,9 +42,6 @@ import { PopupComponent } from './popup/popup.component';
     MatOptionModule,
  ReactiveFormsModule 
     
-
-
-
 
   ],
   providers: [],
