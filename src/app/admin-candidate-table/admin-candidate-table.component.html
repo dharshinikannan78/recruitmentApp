@@ -12,10 +12,10 @@
                 <!--bg-dark text-white -->
                 <thead class=" bg-primary text-white">
                     <tr class="header">
-                        <th>No.</th>
+                        <th>Candidate</th>
                         <th>Full Name</th>
                         <th>Email Id</th>
-                        <th>Number</th>
+                        <th>Phone Number</th>
                         <th>Aadhaar Card Number</th>
                         <th>Passport Number</th>
                         <th>Education</th>
@@ -36,144 +36,154 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr data-bs-toggle="modal" data-bs-target="#exampleModal" >
-                        <td>1</td>
-                        <td>santhosh</td>
-                        <td>san@gamil.com</td>
-                        <td>0987654322</td>
-                        <td>Bsc</td>
-                        <td>Angular</td>
-                        <td>Fresher</td>
-                        <td>20000</td>
-                        <td>40000</td>
-                        <td>null</td>
-                        <td>null</td>
-                        <td>null</td>
-                        <td>null</td>
-                        <td>null</td>
-                        <td>null</td>
-                        <td>null</td>
-                        <td>null</td>
-                        <td>null</td>
-                        <td>null</td>
-                        <td>null</td>
-                        <td>null</td>
+                    <tr *ngFor="let item of dataValue  | filter : searchValue" data-bs-toggle="modal"
+                        attr.data-bs-target="#example{{item.candidateId}}">
+
+                        <td>{{item.candidateId}}</td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.emailId}}</td>
+                        <td>{{item.phoneNumber}}</td>
+                        <td>{{item.identityCardNumber}}</td>
+                        <td>{{item.passPort}}</td>
+                        <td>{{item.educationDetails}}</td>
+                        <td>{{item.skillSet}}</td>
+                        <td>{{item.experience}}</td>
+                        <td>{{item.fresher}}</td>
+                        <td>{{item.currentCity}}</td>
+                        <td>{{item.currentRole}}</td>
+                        <td>{{item.currentCtc}}</td>
+                        <td>{{item.expectedCtc}}</td>
+                        <td>{{item.positionApplied}}</td>
+                        <td>{{item.availabilty}}</td>
+                        <td>{{item.countryResiding}}</td>
+                        <td>{{item.citizenship}}</td>
+                        <td>{{item.attachmentIds}}</td>
+
+
                     </tr>
+
                 </tbody>
             </table>
         </div>
 
         <!-- </div> -->
-
-
-
-
         <!-- Button trigger modal -->
         <!-- <button type="button" class="btn btn-primary" >
             VIEW
         </button> -->
 
         <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Form</h5>
-                        <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
-                    </div>
-                    <div class="modal-body">
-                        <table class="table" style="text-align: center;">
-                            <thead>
-                                <tr>
-                                    <th>Name </th>
-                                    <td>Santhosh</td>
-                                </tr>
-                                <tr>
-                                    <th>Email </th>
-                                    <td>Santhosh@gmail.com</td>
-                                </tr>
-                                <tr>
-                                    <th>Number </th>
-                                    <td>987654321</td>
-                                </tr>
-                                <tr>
-                                    <th>Aadhaar Card Number </th>
-                                    <td>987654321</td>
-                                </tr>
-                                <tr>
-                                    <th>Passport Number </th>
-                                    <td>987654321</td>
-                                </tr>
-                                <tr>
-                                    <th>Education </th>
-                                    <td>Bsc</td>
-                                </tr>
-                                <tr>
-                                    <th>Skill Sets </th>
-                                    <td>Java</td>
-                                </tr>
-                                <tr>
-                                    <th>Experienced</th>
-                                    <td> Experienced</td>
-                                </tr>
-                                <tr>
-                                    <th>Fresher </th>
-                                    <td> Fresher</td>
-                                </tr>
-                                <tr>
-                                    <th>Current Position</th>
-                                    <td>forndend developer </td>
-                                </tr>
-                                <tr>
-                                    <th>Current Ctc</th>
-                                    <td>30000</td>
-                                </tr>
-                                <tr>
-                                    <th>Expected Ctc</th>
-                                    <td>40000</td>
-                                </tr>
-                                <tr>
-                                    <th>Position Applied For </th>
-                                    <td> Fresher</td>
-                                </tr>
-                                <tr>
-                                    <th>Availability </th>
-                                    <td> 1month</td>
-                                </tr>
-                                <tr>
-                                    <th>Current City </th>
-                                    <td> karaikudi</td>
-                                </tr>
-                                <tr>
-                                    <th>Country Residing </th>
-                                    <td> null</td>
-                                </tr>
-                                <tr>
-                                    <th>Citizenship </th>
-                                    <td> null</td>
-                                </tr>
-                                <tr>
-                                    <th>Resume </th>
-                                    <td><button class="btn1"><i class="fa fa-download"></i> Download</button></td>
-                                </tr>
+        <div *ngFor="let item of dataValue">
+            <div class="modal fade" attr.id="example{{item.candidateId}}" tabindex="-1"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">USER DETAILS</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <table class="table" style="text-align: center;">
+                                <thead>
+                                    <tr>
+                                        <th>Name </th>
+                                        <td>{{item.name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Email </th>
+                                        <td>{{item.emailId}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Number </th>
+                                        <td>{{item.phoneNumber}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Aadhaar Card Number </th>
+                                        <td>{{item.identityCardNumber}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Passport Number </th>
+                                        <td>{{item.passPort}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Education </th>
+                                        <td>{{item.educationDetails}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Skill Sets </th>
+                                        <td>{{item.skillSet}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Experienced</th>
+                                        <td>{{item.experience}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Fresher </th>
+                                        <td>{{item.fresher}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Current City </th>
+                                        <td>{{item.currentCity}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Current Position</th>
+                                        <td>{{item.currentRole}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Current Ctc</th>
+                                        <td>{{item.currentCtc}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Expected Ctc</th>
+                                        <td>{{item.expectedCtc}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Position Applied For </th>
+                                        <td>{{item.positionApplied}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Availability </th>
+                                        <td>{{item.availabilty}}</td>
+                                    </tr>
 
-                                <tr>
-                                    <th>Any Cert </th>
-                                    <td><button class="btn1"><i class="fa fa-download"></i> Download</button></td>
-                                </tr>
-                                <tr>
-                                    <th>Additional Cert </th>
-                                    <td><button class="btn1"><i class="fa fa-download"></i> Download</button></td>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <!-- <button type="button" class="btn btn-primary">Download</button>  -->
+                                    <tr>
+                                        <th>Country Residing </th>
+                                        <td>{{item.countryResiding}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Citizenship </th>
+                                        <td>{{item.citizenship}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Resume </th>
+                                        <td><button class="btn1"><i class="fa fa-download"></i> Download</button></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>Any Cert </th>
+                                        <td><button class="btn1"><i class="fa fa-download"></i> Download</button></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Additional Cert </th>
+                                        <td><button class="btn1"><i class="fa fa-download"></i> Download</button></td>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <!-- <button type="button" class="btn btn-primary">Download</button>  -->
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <!-- <div class="" *ngFor="let item of dataValue" >
+        {{item.FileLocation}}
+       </div>
+       
+       
+       
+       <a href="https://localhost:44340/api/FileAttachment/data?fileUrl=Resource%5C%5CImages%5C%5C3%202022%2016%5C%5C5178.pdf" download>dowload</a> -->
 </section>
