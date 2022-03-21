@@ -9,11 +9,11 @@
 </script> -->
 
 <section class="wrap">
-    <div class="container ">
+    <div class="container dcenter">
         <div class="row">
             <h1 class="title my-3">Registration Form</h1>
 
-            <form  [formGroup]="form" (ngSubmit)="submit(form.value)">
+            <form [formGroup]="form" (ngSubmit)="submit(form.value)">
                 <div class="mb-3">
                     <label class="form-label">Full Name</label>
                     <input type="name" formControlName="Name" class="form-control" aria-describedby="emailHelp"
@@ -58,7 +58,8 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label"> Education</label>
-                    <input type="text" formControlName="EducationDetails" class="form-control" placeholder=" Bsc,Msc...">
+                    <input type="text" formControlName="EducationDetails" class="form-control"
+                        placeholder=" Bsc,Msc...">
 
                     <span class="text-danger"
                         *ngIf="form.controls['EducationDetails'].touched && form.hasError('required','EducationDetails')">*Field
@@ -67,7 +68,8 @@
 
                 <div class="mb-3">
                     <label class="form-label">Skill Sets</label>
-                    <input type="text" formControlName="SkillSet" class="form-control" placeholder="  DotNet, MySql, etc..">
+                    <input type="text" formControlName="SkillSet" class="form-control"
+                        placeholder="  DotNet, MySql, etc..">
                     <span class="text-danger"
                         *ngIf="form.controls['SkillSet'].touched && form.hasError('required','SkillSet')">*Field
                         is required</span>
@@ -76,10 +78,11 @@
                 <div class="formField userType">
                     <div class="formInput resman-input resman-input-default resman-input-normal resman-input-hidden">
                         <label class="labelClass">Work Status</label>
-                    </div>
-                    <div class="radioWrap" >
-                        <div tabindex="0"  class="focusable optionWrap selected dcenter">
-                            <!-- <i class="bi bi-check-square-fill"></i> -->
+                    </div> 
+                     <!-- <i class="bi bi-check-square-fill"></i> -->
+                    <div class="radioWrap" formControlName="Experience">
+                        <div tabindex="0" class="focusable optionWrap selected dcenter">
+                           
                             <div class="dtable">
                                 <i class="bi bi-briefcase"></i>
                             </div>
@@ -87,10 +90,10 @@
 
                                 <h2 class="main-3">I'm Experienced</h2>
                                 <p class="main-2"> I have work experience (excluding internships)</p>
-                            </div>
-                        </div>
+                            </div> 
+                        </div> 
 
-                        <div  (click)="flag = !flag" tabindex="0" class="focusable optionWrap selected dcenter">
+                        <div (click)="flag = !flag" tabindex="0" formControlName="Fresher" class="focusable optionWrap selected dcenter">
 
                             <div class="dtable">
                                 <i class="bi bi-person-plus"></i>
@@ -102,7 +105,7 @@
                         </div>
                     </div>
                 </div> <br>
-                 <div class="mb-3" *ngIf="!flag">
+                <div class="mb-3" *ngIf="!flag">
                     <label class="form-label"> Current City</label>
                     <input type="text" formControlName="CurrentCity" class="form-control"
                         placeholder="Mention the city you live in">
@@ -110,10 +113,10 @@
                     <span class="text-danger"
                         *ngIf="form.controls['CurrentCity'].touched && form.hasError('required','CurrentCity')">*Field
                         is required</span>
-                </div>
+                </div> 
 
-                <div class="mb-3" id="currentPosition" >
-                    <label class="form-label" > Current Position</label>
+                <div class="mb-3" id="currentPosition">
+                    <label class="form-label"> Current Position</label>
                     <input type="text" formControlName="CurrentRole" class="form-control"
                         placeholder="Mention your current position">
 
@@ -121,7 +124,7 @@
                         *ngIf="form.controls['CurrentRole'].touched && form.hasError('required','CurrentRole')">*Field
                         is required</span>
                 </div>
-                <div class="mb-3" >
+                <div class="mb-3">
                     <label class="form-label"> Current Ctc</label>
                     <input type="text" formControlName="CurrentCtc" class="form-control"
                         placeholder="Mention the Current  Ctc">
@@ -130,7 +133,7 @@
                         *ngIf="form.controls['CurrentCtc'].touched && form.hasError('required','CurrentCtc')">*Field
                         is required</span>
                 </div>
-                <div class="mb-3" >
+                <div class="mb-3">
                     <label class="form-label"> Expected Ctc</label>
                     <input type="text" formControlName="ExpectedCtc" class="form-control"
                         placeholder="Mention the Expected Ctc">
@@ -157,7 +160,7 @@
                         <option value="3">More than 2 months</option>
                     </select>
                 </div>
-               
+
                 <div class="mb-3">
                     <label class="form-label"> Country Residing</label>
                     <input type="text" formControlName="CountryResiding" class="form-control"
@@ -179,31 +182,29 @@
 
                 <div class="mb-3">
                     <label for="formFileMultiple" class="form-label">Resume</label>
-                    <input class="input-box" formControlName="filesResume" value="uplode file" type="file"
-                        id="formFileMultiple">
+                    <input type="file" class="input-box" formControlName="filesResume" value="uplode file" id="formFileMultiple">
                 </div>
 
                 <div class="mb-3">
                     <label for="formFileMultiple" class="form-label">Any Cert</label>
-                    <input class="input-box" formControlName="files" type="file" id="formFileMultiple">
+                    <input type="file" class="input-box" formControlName="files" id="formFileMultiple">
                 </div>
 
                 <div class="mb-3">
                     <label for="formFileMultiple" class="form-label">Additional Cert</label>
-                    <input class="input-box" formControlName="additionalfiles" type="file" id="formFileMultiple">
+                    <input type="file" class="input-box" formControlName="additionalfiles" id="formFileMultiple">
                 </div>
-                <!-- <div class="resume-upload-container Narrow_Widget"><label class="labelClass">Resume</label>
-                    <div class="resume-upload">
-                        <div><button class="uploadResume resman-btn-primary resman-btn-small" type="file">Upload
-                                Resume</button></div>
-                        <div class="narrowFormats">
-                            <p>DOC, DOCx, PDF, RTF | Max: 2 MB</p>
-                        </div>
-                    </div>
-                    <div class="info h2">Recruiters give first preference to candidates who have a resume</div><input
-                        class="uploadAction" type="file" id="resumeUpload">
-                </div> -->
-                <button type="submit" class="btn btn-primary" (click)="registrationLogin()">Register Now</button>
+                <!-- <label class="maxView">Any Certification</label>
+                <input type="file" class="input-box" #file formControlName="files" placeholder="choose the file"
+                    (change)="upload(file.files)"><br>
+                <label class="maxView">Resume</label>
+                <input type="file" class="form-control" #resume formControlName="filesResume" placeholder="choose the file"
+                    (change)="upload(resume.files)"><br>
+                <label class="maxView">Additional Documents</label>
+                <input type="file" class="form-control" #document formControlName="additionalfiles"
+                    placeholder="choose the file" (change)="upload(document.files)"><br> -->
+
+                <button type="submit" class="btn btn-primary" (click)="registrationLogin()">Register Now!</button>
 
             </form>
         </div>

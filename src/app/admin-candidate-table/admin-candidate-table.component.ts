@@ -23,15 +23,14 @@ attachmentFile:any;
   constructor(private regiseration: ApiService,private http:HttpClient) { }
 
   ngOnInit(): void {
-    this.regiseration.getData().subscribe((data:any) => {
-      this.dataValue = data;
+    // this.regiseration.getData().subscribe((data:any) => {
+    //   this.dataValue = data;
     
      
-     this.regiseration.getAttachment().subscribe(dataAttach=>{
-       this.valueArray = dataAttach
-             })
-
-    })
+    //  this.regiseration.getAttachment().subscribe(dataAttach=>{
+    //    this.valueArray = dataAttach
+    //          })
+    // })
 
   }
 // getFile(){
