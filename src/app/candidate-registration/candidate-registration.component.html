@@ -1,24 +1,22 @@
-<!-- <script>
-    function showHide() {
-        if (document.getElementsByClassName('textwrap').checked) {
-            document.getElementById('currentPosition').style.display = 'none';
-        } else {
-            document.getElementById('currentPosition').style.display = 'block';
-        }
+
+<script>
+    function myFunction() {
+      document.getElementById("myDiv").style.borderColor = "red";
     }
-</script> -->
+    </script>
 
 <section class="wrap">
     <div class="container dcenter">
         <div class="row">
             <h1 class="title my-3">Registration Form</h1>
-            <form [formGroup]="loginForm">
+
+            <form [formGroup]="form" (ngSubmit)="submit(form.value)">
                 <div class="mb-3">
                     <label class="form-label">Full Name</label>
                     <input type="name" formControlName="Name" class="form-control" aria-describedby="emailHelp"
                         placeholder="what is your name?" required>
                     <span class="text-danger"
-                        *ngIf="loginForm.controls['userName'].touched && loginForm.hasError('required','userName')">*Field
+                        *ngIf="form.controls['Name'].touched && form.hasError('required','Name')">*Field
                         is required</span>
                 </div>
 
@@ -27,7 +25,7 @@
                     <input type="email" formControlName="EmailId" class="form-control" aria-describedby="emailHelp"
                         placeholder="Tell Us your Email Id">
                     <span class="text-danger"
-                        *ngIf="loginForm.controls['emailId'].touched && loginForm.hasError('required','emailId')">*Field
+                        *ngIf="form.controls['EmailId'].touched && form.hasError('required','EmailId')">*Field
                         is required</span>
                 </div>
 
@@ -35,16 +33,16 @@
                     <label class="form-label">Mobile Number</label>
                     <input type="number" formControlName="phoneNumber" class="form-control" placeholder="Mobile Number">
                     <span class="text-danger"
-                        *ngIf="loginForm.controls['phoneNumber'].touched && loginForm.hasError('required','phoneNumber')">*Field
+                        *ngIf="form.controls['phoneNumber'].touched && form.hasError('required','phoneNumber')">*Field
                         is required</span>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">  Identity Card number</label>
-                    <input type="text" formControlName="IdentityCardnumber" class="form-control"
+                    <label class="form-label"> Identity Card number</label>
+                    <input type="text" formControlName="IdentityCardNumber" class="form-control"
                         placeholder=" Enter value...">
 
                     <span class="text-danger"
-                        *ngIf="loginForm.controls['IdentityCardnumber'].touched && loginForm.hasError('required','IdentityCardnumber')">*Field
+                        *ngIf="form.controls['IdentityCardNumber'].touched && form.hasError('required','IdentityCardNumber')">*Field
                         is required</span>
                 </div>
                 <div class="mb-3">
@@ -52,33 +50,36 @@
                     <input type="text" formControlName="PassPort" class="form-control" placeholder=" Enter value...">
 
                     <span class="text-danger"
-                        *ngIf="loginForm.controls['PassPort'].touched && loginForm.hasError('required','PassPort')">*Field
+                        *ngIf="form.controls['PassPort'].touched && form.hasError('required','PassPort')">*Field
                         is required</span>
                 </div>
                 <div class="mb-3">
                     <label class="form-label"> Education</label>
-                    <input type="text" formControlName="EducationDetails" class="form-control" placeholder=" Bsc,Msc...">
+                    <input type="text" formControlName="EducationDetails" class="form-control"
+                        placeholder=" Bsc,Msc...">
 
                     <span class="text-danger"
-                        *ngIf="loginForm.controls['EducationDetails'].touched && loginForm.hasError('required','EducationDetails')">*Field
+                        *ngIf="form.controls['EducationDetails'].touched && form.hasError('required','EducationDetails')">*Field
                         is required</span>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">Skill Sets</label>
-                    <input type="text" formControlName="skillSet" class="form-control" placeholder="  DotNet, MySql, etc..">
+                    <input type="text" formControlName="SkillSet" class="form-control"
+                        placeholder="  DotNet, MySql, etc..">
                     <span class="text-danger"
-                        *ngIf="loginForm.controls['skillSet'].touched && loginForm.hasError('required','skillSet') boeder">*Field
+                        *ngIf="form.controls['SkillSet'].touched && form.hasError('required','SkillSet')">*Field
                         is required</span>
                 </div>
 
                 <div class="formField userType">
                     <div class="formInput resman-input resman-input-default resman-input-normal resman-input-hidden">
                         <label class="labelClass">Work Status</label>
-                    </div>
+                    </div> 
+                     <!-- <i class="bi bi-check-square-fill"></i> -->
                     <div class="radioWrap" >
-                        <div tabindex="0" [ngClass]=" flag ? 'primary' : 'secondary'" class="focusable optionWrap selected dcenter">
-                            <i class="bi bi-check-square-fill"></i>
+                        <div tabindex="0"  id="myDiv" formControlName="Experience" onclick="myFunction()" class="focusable optionWrap selected dcenter">
+                            
                             <div class="dtable">
                                 <i class="bi bi-briefcase"></i>
                             </div>
@@ -86,10 +87,10 @@
 
                                 <h2 class="main-3">I'm Experienced</h2>
                                 <p class="main-2"> I have work experience (excluding internships)</p>
-                            </div>
-                        </div>
+                            </div> 
+                        </div> 
 
-                        <div  (click)="flag = !flag" tabindex="0" class="focusable optionWrap selected dcenter">
+                        <div (click)="flag = !flag" tabindex="0" formControlName="Fresher" class="focusable optionWrap selected dcenter">
 
                             <div class="dtable">
                                 <i class="bi bi-person-plus"></i>
@@ -101,41 +102,41 @@
                         </div>
                     </div>
                 </div> <br>
-                 <div class="mb-3" *ngIf="!flag">
+                <div class="mb-3" *ngIf="!flag">
                     <label class="form-label"> Current City</label>
-                    <input type="text" formControlName="currentCity" class="form-control"
+                    <input type="text" formControlName="CurrentCity" class="form-control"
                         placeholder="Mention the city you live in">
 
                     <span class="text-danger"
-                        *ngIf="loginForm.controls['currentCity'].touched && loginForm.hasError('required','currentCity')">*Field
+                        *ngIf="form.controls['CurrentCity'].touched && form.hasError('required','CurrentCity')">*Field
                         is required</span>
-                </div>
+                </div> 
 
-                <div class="mb-3" id="currentPosition" >
-                    <label class="form-label" [ngClass]=" flag ? 'primary' : 'secondary'"> Current Position</label>
+                <div class="mb-3" id="currentPosition">
+                    <label class="form-label"> Current Position</label>
                     <input type="text" formControlName="CurrentRole" class="form-control"
                         placeholder="Mention your current position">
 
                     <span class="text-danger"
-                        *ngIf="loginForm.controls['CurrentRole'].touched && loginForm.hasError('required','CurrentRole')">*Field
+                        *ngIf="form.controls['CurrentRole'].touched && form.hasError('required','CurrentRole')">*Field
                         is required</span>
                 </div>
-                <div class="mb-3" >
+                <div class="mb-3">
                     <label class="form-label"> Current Ctc</label>
                     <input type="text" formControlName="CurrentCtc" class="form-control"
                         placeholder="Mention the Current  Ctc">
 
                     <span class="text-danger"
-                        *ngIf="loginForm.controls['CurrentCtc'].touched && loginForm.hasError('required','CurrentCtc')">*Field
+                        *ngIf="form.controls['CurrentCtc'].touched && form.hasError('required','CurrentCtc')">*Field
                         is required</span>
                 </div>
-                <div class="mb-3" >
+                <div class="mb-3">
                     <label class="form-label"> Expected Ctc</label>
                     <input type="text" formControlName="ExpectedCtc" class="form-control"
                         placeholder="Mention the Expected Ctc">
 
                     <span class="text-danger"
-                        *ngIf="loginForm.controls['ExpectedCtc'].touched && loginForm.hasError('required','ExpectedCtc')">*Field
+                        *ngIf="form.controls['ExpectedCtc'].touched && form.hasError('required','ExpectedCtc')">*Field
                         is required</span>
                 </div>
 
@@ -144,26 +145,26 @@
                     <input type="text" formControlName="PositionApplied" class="form-control" placeholder="your wish">
 
                     <span class="text-danger"
-                        *ngIf="loginForm.controls['PositionApplied'].touched && loginForm.hasError('required','PositionApplied')">*Field
+                        *ngIf="form.controls['PositionApplied'].touched && form.hasError('required','PositionApplied')">*Field
                         is required</span>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Availability</label> &nbsp; &nbsp;
-                    <select class="form-select" formControlName="Availability" required>
+                    <select class="form-select" formControlName="Availabilty" required>
                         <option class="form-select1">Open this select menu</option>
                         <option value="1">1 month</option>
                         <option value="2">2 Months</option>
                         <option value="3">More than 2 months</option>
                     </select>
                 </div>
-               
+
                 <div class="mb-3">
                     <label class="form-label"> Country Residing</label>
                     <input type="text" formControlName="CountryResiding" class="form-control"
                         placeholder="Mention your country">
 
                     <span class="text-danger"
-                        *ngIf="loginForm.controls['CountryResiding'].touched && loginForm.hasError('required','CountryResiding')">*Field
+                        *ngIf="form.controls['CountryResiding'].touched && form.hasError('required','CountryResiding')">*Field
                         is required</span>
                 </div>
                 <div class="mb-3">
@@ -172,41 +173,37 @@
                         placeholder="Mention your citizenship">
 
                     <span class="text-danger"
-                        *ngIf="loginForm.controls['Citizenship'].touched && loginForm.hasError('required','Citizenship')">*Field
+                        *ngIf="form.controls['Citizenship'].touched && form.hasError('required','Citizenship')">*Field
                         is required</span>
                 </div>
 
                 <div class="mb-3">
                     <label for="formFileMultiple" class="form-label">Resume</label>
-                    <input class="input-box" formControlName="filesResume" value="uplode file" type="file"
-                        id="formFileMultiple">
+                    <input type="file" class="input-box" formControlName="filesResume" value="uplode file" id="formFileMultiple">
                 </div>
 
                 <div class="mb-3">
                     <label for="formFileMultiple" class="form-label">Any Cert</label>
-                    <input class="input-box" formControlName="files" type="file" id="formFileMultiple">
+                    <input type="file" class="input-box" formControlName="files" id="formFileMultiple">
                 </div>
 
                 <div class="mb-3">
                     <label for="formFileMultiple" class="form-label">Additional Cert</label>
-<<<<<<< HEAD:src/app/signup/signup.component.html
-                    <input class="input-box" formControlName="additionalCert" type="file" id="formFileMultiple">
-=======
-                    <input class="input-box" formControlName="additionalfiles" type="file" id="formFileMultiple">
->>>>>>> santhosh:src/app/candidate-registration/candidate-registration.component.html
+
+                    <input type="file" class="input-box" formControlName="additionalfiles" id="formFileMultiple">
                 </div>
-                <!-- <div class="resume-upload-container Narrow_Widget"><label class="labelClass">Resume</label>
-                    <div class="resume-upload">
-                        <div><button class="uploadResume resman-btn-primary resman-btn-small" type="file">Upload
-                                Resume</button></div>
-                        <div class="narrowFormats">
-                            <p>DOC, DOCx, PDF, RTF | Max: 2 MB</p>
-                        </div>
-                    </div>
-                    <div class="info h2">Recruiters give first preference to candidates who have a resume</div><input
-                        class="uploadAction" type="file" id="resumeUpload">
-                </div> -->
-                <button type="submit" class="btn btn-primary" (click)="onlogin()">Register Now</button>
+                <!-- <label class="maxView">Any Certification</label>
+                <input type="file" class="input-box" #file formControlName="files" placeholder="choose the file"
+                    (change)="upload(file.files)"><br>
+                <label class="maxView">Resume</label>
+                <input type="file" class="form-control" #resume formControlName="filesResume" placeholder="choose the file"
+                    (change)="upload(resume.files)"><br>
+                <label class="maxView">Additional Documents</label>
+                <input type="file" class="form-control" #document formControlName="additionalfiles"
+                    placeholder="choose the file" (change)="upload(document.files)"><br> -->
+
+                <button type="submit" class="btn btn-primary" (click)="registrationLogin()">Register Now!</button>
+
 
             </form>
         </div>

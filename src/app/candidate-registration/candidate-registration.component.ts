@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder,FormGroup,Validators } from '@angular/forms';
-
+import { Component, OnInit, Input } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { HttpClient, HttpEventType } from '@angular/common/http';
+import { ApiService } from '../service/api.service';
+import Swal from 'sweetalert2';
 @Component({
 
   selector: 'app-candidate-registration',
@@ -8,69 +10,76 @@ import { FormBuilder,FormGroup,Validators } from '@angular/forms';
   styleUrls: ['./candidate-registration.component.scss']
 })
 export class CandidateRegistrationComponent implements OnInit {
-  datavalue: any;
+  @Input() public fileUrl: string = '';
+
   flag: boolean = true;
-  public loginForm! : FormGroup
-  constructor(private formBuilder : FormBuilder) { }
-list =[]
+  attachmentPath: any = [];
+  attachmentId: any = [];
+  datavale: any;
+  response = { dppath: '' };
+  message: any;
+  progress: any;
+  progressView: any;
+  formData: any;
+  form = new FormGroup({
+
+    Name: new FormControl('', Validators.required),
+    EmailId: new FormControl('', Validators.required),
+    phoneNumber: new FormControl('', Validators.required),
+    Experience: new FormControl('', Validators.required),
+    Fresher: new FormControl('', Validators.required),
+    SkillSet: new FormControl('', Validators.required),
+    EducationDetails: new FormControl('', Validators.required),
+    CurrentCtc: new FormControl('', Validators.required),
+    ExpectedCtc: new FormControl('', Validators.required),
+    Availabilty: new FormControl('', Validators.required),
+    PassPort: new FormControl('', Validators.required),
+    CountryResiding: new FormControl('', Validators.required),
+    Citizenship: new FormControl('', Validators.required),
+    CurrentRole: new FormControl('', Validators.required),
+    CurrentCity: new FormControl('', Validators.required),
+    PositionApplied: new FormControl('', Validators.required),  
+    IdentityCardNumber: new FormControl('', Validators.required),
+    files: new FormControl('', Validators.required),
+    filesResume: new FormControl('', Validators.required),
+    additionalfiles: new FormControl('', Validators.required)
+
+  })
+
+  constructor(private detail: ApiService, private http: HttpClient) {
+  }
+
   ngOnInit(): void {
-    this.loginForm =this.formBuilder.group({
-      Name:['',Validators.required],
-      EmailId:['',Validators.required],
-      phoneNumber:['',Validators.required],
-      IdentityCardnumber:['',Validators.required],
-      PassPort:['',Validators.required],
-      EducationDetails:['',Validators.required],
-      skillSet:['',Validators.required],
-      Experience:['',Validators.required],
-      Fresher:['',Validators.required],
-      Availability:['',Validators.required],
-      currentCity:['',Validators.required],
-      CurrentCtc:['',Validators.required],
-      ExpectedCtc:['',Validators.required],
-      CurrentRole:['',Validators.required],
-      PositionApplied:['',Validators.required],
-      CountryResiding:['',Validators.required],
-      Citizenship:['',Validators.required],
-      filesResume:['',Validators.required],
-      files:['',Validators.required],
-      additionalfiles:['',Validators.required]
-    })
-    
   }
-  submit(form:any){
-    this.loginForm=this.datavalue
 
-  console.log(this.loginForm)
-  this.loginForm.reset();
+  submit(candidateDetails: any) {
 
+    this.detail.createPost(candidateDetails)
+      .subscribe(data => {
+        this.datavale = data
+        alert('')
+        console.log(data)
+        this.form.reset();
+        console.log(this.form.value.name)
+      })
   }
-  // submit(candidateDetails: any) {
-  //   this.detail.createPost(candidateDetails).subscribe(data => {
-  //     this.datavale = data
-      
 
-  //     console.log(data)
-  //     this.loginForm.reset();
-  //     console.log(this.loginForm.value.name )
-  //   })
-  // }
-  
-  showMode(){
-    this.flag = true;
-  };
-
-  onlogin() {
-    console.log(this.loginForm)
-    if (this.loginForm.invalid) {
-      alert('Register Unsucessfully!')
-    
+  registrationLogin() {
+    console.log('data')
+    if (this.form.invalid) {
+      alert('Fill the Required area')
     }
     else {
-      this.loginForm.reset();
+      Swal.fire({
+        text: 'Register Sucessfully!',
+        icon: 'success',
+        timer: 1500
+      });
+      //  this.form.reset();
     }
-    console.log(this.loginForm)
   }
-  }
+
+
+}
 
 

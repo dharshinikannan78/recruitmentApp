@@ -26,7 +26,7 @@
                             is required</span>
 
                     </div>
-                    <button type="submit" [disabled]="loginForm.valid" class="btn btn-primary my-3">Log in</button>
+                    <button type="submit" [disabled]="loginForm.valid" class="btn btn-primary my-3"  (click)="getUserdetails(loginForm.value)">Log in</button>
                 </form>
             </div>
         </div>
