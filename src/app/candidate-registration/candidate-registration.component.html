@@ -1,12 +1,9 @@
-<!-- <script>
-    function showHide() {
-        if (document.getElementsByClassName('textwrap').checked) {
-            document.getElementById('currentPosition').style.display = 'none';
-        } else {
-            document.getElementById('currentPosition').style.display = 'block';
-        }
+
+<script>
+    function myFunction() {
+      document.getElementById("myDiv").style.borderColor = "red";
     }
-</script> -->
+    </script>
 
 <section class="wrap">
     <div class="container dcenter">
@@ -80,9 +77,9 @@
                         <label class="labelClass">Work Status</label>
                     </div> 
                      <!-- <i class="bi bi-check-square-fill"></i> -->
-                    <div class="radioWrap" formControlName="Experience">
-                        <div tabindex="0" class="focusable optionWrap selected dcenter">
-                           
+                    <div class="radioWrap" >
+                        <div tabindex="0"  id="myDiv" formControlName="Experience" onclick="myFunction()" class="focusable optionWrap selected dcenter">
+                            
                             <div class="dtable">
                                 <i class="bi bi-briefcase"></i>
                             </div>
