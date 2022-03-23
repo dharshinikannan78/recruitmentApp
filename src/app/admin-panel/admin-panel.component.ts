@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder,FormGroup,Validators } from '@angular/forms';
-import { ApiService } from '../service/api.service'; 
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ApiService } from '../service/api.service';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-admin-panel',
@@ -9,27 +9,24 @@ import { Router } from '@angular/router';
 })
 export class AdminPanelComponent implements OnInit {
 
-  public loginForm! : FormGroup
-  constructor(private formBuilder : FormBuilder, private regiseration: ApiService, private router: Router) { }
+  public loginForm!: FormGroup
+
+  constructor(private registrationService: ApiService, private router: Router) { }
 
   ngOnInit(): void {
-    this.loginForm =this.formBuilder.group({
-      userName:['',Validators.required],
-      password:['',Validators.required]
+    this.loginForm = new FormGroup({
+      username: new FormControl('', Validators.required),
+      password: new FormControl('', Validators.required),
     })
   }
-  dataValue: any;
-  
-  getUserdetails(post: any) {
+
+  adminCredentials(post: any) {
     if (this.loginForm.invalid) {
       alert('Get the Credentials');
-
     } else {
-
-      this.regiseration.getAdminLogin(post).subscribe(data => {
-        this.router.navigate(['userdetails'])
+      this.registrationService.postAdminLoginPanel(post).subscribe((data: any) => {
+        this.router.navigate(['table'])
       })
-
     }
     this.loginForm.reset()
   }

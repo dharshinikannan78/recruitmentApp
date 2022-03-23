@@ -1,25 +1,16 @@
-
-<script>
-    function myFunction() {
-      document.getElementById("myDiv").style.borderColor = "red";
-    }
-    </script>
-
-<section class="wrap">
-    <div class="container dcenter">
+<section class="root">
+    <div class="container">
         <div class="row">
-            <h1 class="title my-3">Registration Form</h1>
-
-            <form [formGroup]="form" (ngSubmit)="submit(form.value)">
+            <h1 class="title mt-3 mb-5">Registration Form</h1>
+            <form [formGroup]="form" (ngSubmit)="candidateFormSubmission(form.value)" id="scrollBarHidden">
                 <div class="mb-3">
                     <label class="form-label">Full Name</label>
                     <input type="name" formControlName="Name" class="form-control" aria-describedby="emailHelp"
-                        placeholder="what is your name?" required>
+                        placeholder="Enter your Full Name" required>
                     <span class="text-danger"
                         *ngIf="form.controls['Name'].touched && form.hasError('required','Name')">*Field
                         is required</span>
                 </div>
-
                 <div class="mb-3">
                     <label class="form-label">Email Id</label>
                     <input type="email" formControlName="EmailId" class="form-control" aria-describedby="emailHelp"
@@ -28,10 +19,9 @@
                         *ngIf="form.controls['EmailId'].touched && form.hasError('required','EmailId')">*Field
                         is required</span>
                 </div>
-
                 <div class="mb-3">
                     <label class="form-label">Mobile Number</label>
-                    <input type="number" formControlName="phoneNumber" class="form-control" placeholder="Mobile Number">
+                    <input type="text" formControlName="phoneNumber" class="form-control" placeholder="Mobile Number">
                     <span class="text-danger"
                         *ngIf="form.controls['phoneNumber'].touched && form.hasError('required','phoneNumber')">*Field
                         is required</span>
@@ -39,16 +29,15 @@
                 <div class="mb-3">
                     <label class="form-label"> Identity Card number</label>
                     <input type="text" formControlName="IdentityCardNumber" class="form-control"
-                        placeholder=" Enter value...">
-
+                        placeholder="Enter your Id card Number">
                     <span class="text-danger"
                         *ngIf="form.controls['IdentityCardNumber'].touched && form.hasError('required','IdentityCardNumber')">*Field
                         is required</span>
                 </div>
                 <div class="mb-3">
                     <label class="form-label"> Passport Number</label>
-                    <input type="text" formControlName="PassPort" class="form-control" placeholder=" Enter value...">
-
+                    <input type="text" formControlName="PassPort" class="form-control"
+                        placeholder="Enter your PassPort Number">
                     <span class="text-danger"
                         *ngIf="form.controls['PassPort'].touched && form.hasError('required','PassPort')">*Field
                         is required</span>
@@ -56,67 +45,47 @@
                 <div class="mb-3">
                     <label class="form-label"> Education</label>
                     <input type="text" formControlName="EducationDetails" class="form-control"
-                        placeholder=" Bsc,Msc...">
-
+                        placeholder="Enter your Education Details">
                     <span class="text-danger"
                         *ngIf="form.controls['EducationDetails'].touched && form.hasError('required','EducationDetails')">*Field
                         is required</span>
                 </div>
-
                 <div class="mb-3">
                     <label class="form-label">Skill Sets</label>
                     <input type="text" formControlName="SkillSet" class="form-control"
-                        placeholder="  DotNet, MySql, etc..">
+                        placeholder="Enter your Skill Set">
                     <span class="text-danger"
                         *ngIf="form.controls['SkillSet'].touched && form.hasError('required','SkillSet')">*Field
                         is required</span>
                 </div>
-
-                <div class="formField userType">
-                    <div class="formInput resman-input resman-input-default resman-input-normal resman-input-hidden">
-                        <label class="labelClass">Work Status</label>
-                    </div> 
-                     <!-- <i class="bi bi-check-square-fill"></i> -->
-                    <div class="radioWrap" >
-                        <div tabindex="0"  id="myDiv" formControlName="Experience" onclick="myFunction()" class="focusable optionWrap selected dcenter">
-                            
-                            <div class="dtable">
-                                <i class="bi bi-briefcase"></i>
-                            </div>
-                            <div class="textWrap">
-
-                                <h2 class="main-3">I'm Experienced</h2>
-                                <p class="main-2"> I have work experience (excluding internships)</p>
-                            </div> 
-                        </div> 
-
-                        <div (click)="flag = !flag" tabindex="0" formControlName="Fresher" class="focusable optionWrap selected dcenter">
-
-                            <div class="dtable">
-                                <i class="bi bi-person-plus"></i>
-                            </div>
-                            <div class="textWrap">
-                                <h2 class="main-3">I'm a Fresher</h2>
-                                <p class="main-2">I am a student/ Haven't worked after graduation</p>
-                            </div>
-                        </div>
-                    </div>
-                </div> <br>
-                <div class="mb-3" *ngIf="!flag">
-                    <label class="form-label"> Current City</label>
+                <div class="mb-3">
+                    <label class="form-label">Experience</label>
+                    <input type="text" formControlName="Experience" class="form-control"
+                        placeholder="Enter your Experience">
+                    <span class="text-danger"
+                        *ngIf="form.controls['Experience'].touched && form.hasError('required','Experience')">*Field
+                        is required</span>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Fresher</label>
+                    <input type="text" formControlName="Fresher" class="form-control" placeholder="Are you Fresher?">
+                    <span class="text-danger"
+                        *ngIf="form.controls['Fresher'].touched && form.hasError('required','Fresher')">*Field
+                        is required</span>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">current City</label>
                     <input type="text" formControlName="CurrentCity" class="form-control"
-                        placeholder="Mention the city you live in">
-
+                        placeholder="Enter your Current City">
                     <span class="text-danger"
                         *ngIf="form.controls['CurrentCity'].touched && form.hasError('required','CurrentCity')">*Field
                         is required</span>
-                </div> 
+                </div>
 
-                <div class="mb-3" id="currentPosition">
+                <div class="mb-3">
                     <label class="form-label"> Current Position</label>
                     <input type="text" formControlName="CurrentRole" class="form-control"
-                        placeholder="Mention your current position">
-
+                        placeholder="Enter your current Position">
                     <span class="text-danger"
                         *ngIf="form.controls['CurrentRole'].touched && form.hasError('required','CurrentRole')">*Field
                         is required</span>
@@ -124,8 +93,7 @@
                 <div class="mb-3">
                     <label class="form-label"> Current Ctc</label>
                     <input type="text" formControlName="CurrentCtc" class="form-control"
-                        placeholder="Mention the Current  Ctc">
-
+                        placeholder="Enter your current Ctc">
                     <span class="text-danger"
                         *ngIf="form.controls['CurrentCtc'].touched && form.hasError('required','CurrentCtc')">*Field
                         is required</span>
@@ -133,35 +101,34 @@
                 <div class="mb-3">
                     <label class="form-label"> Expected Ctc</label>
                     <input type="text" formControlName="ExpectedCtc" class="form-control"
-                        placeholder="Mention the Expected Ctc">
-
+                        placeholder="Enter your Expected Ctc">
                     <span class="text-danger"
                         *ngIf="form.controls['ExpectedCtc'].touched && form.hasError('required','ExpectedCtc')">*Field
                         is required</span>
                 </div>
-
                 <div class="mb-3">
                     <label class="form-label"> Position Applied For</label>
-                    <input type="text" formControlName="PositionApplied" class="form-control" placeholder="your wish">
+                    <input type="text" formControlName="PositionApplied" class="form-control"
+                        placeholder="Position you Need to apply For?">
 
                     <span class="text-danger"
                         *ngIf="form.controls['PositionApplied'].touched && form.hasError('required','PositionApplied')">*Field
                         is required</span>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Availability</label> &nbsp; &nbsp;
+                    <label class="form-label">Availability</label>
                     <select class="form-select" formControlName="Availabilty" required>
                         <option class="form-select1">Open this select menu</option>
-                        <option value="1">1 month</option>
-                        <option value="2">2 Months</option>
-                        <option value="3">More than 2 months</option>
+                        <option>1 Month</option>
+                        <option>2 Months</option>
+                        <option>More than 2 Months</option>
                     </select>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label"> Country Residing</label>
                     <input type="text" formControlName="CountryResiding" class="form-control"
-                        placeholder="Mention your country">
+                        placeholder="Enter your Country Residing">
 
                     <span class="text-danger"
                         *ngIf="form.controls['CountryResiding'].touched && form.hasError('required','CountryResiding')">*Field
@@ -169,43 +136,34 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label"> Citizenship</label>
-                    <input type="text" formControlName="Citizenship" class="form-control"
-                        placeholder="Mention your citizenship">
+                    <input type="text" formControlName="Citizenship" class="form-control" placeholder="Citizenship">
 
                     <span class="text-danger"
                         *ngIf="form.controls['Citizenship'].touched && form.hasError('required','Citizenship')">*Field
                         is required</span>
                 </div>
-
                 <div class="mb-3">
-                    <label for="formFileMultiple" class="form-label">Resume</label>
-                    <input type="file" class="input-box" formControlName="filesResume" value="uplode file" id="formFileMultiple">
+                    <label class="form-label">Resume</label>
+                    <input type="file" class="input-box" #resume formControlName="filesResume"
+                        placeholder="choose the file" (change)="uploadcandidateFile(resume.files,'Resume')">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Any Certification</label>
+                    <input type="file" class="input-box" #file formControlName="files" placeholder="choose the file"
+                        (change)="uploadcandidateFile(file.files,'Certificate')">
                 </div>
 
                 <div class="mb-3">
-                    <label for="formFileMultiple" class="form-label">Any Cert</label>
-                    <input type="file" class="input-box" formControlName="files" id="formFileMultiple">
+                    <label class="form-label">Additional Documents</label>
+                    <input type="file" class="input-box" #document formControlName="additionalfiles"
+                        placeholder="choose the file" (change)="uploadcandidateFile(document.files,'AdditionalDoc')">
                 </div>
-
-                <div class="mb-3">
-                    <label for="formFileMultiple" class="form-label">Additional Cert</label>
-
-                    <input type="file" class="input-box" formControlName="additionalfiles" id="formFileMultiple">
+                <div class="submitButton">
+                    <button type="submit" class="btn btn-primary" (click)="candidateLogin()">Register
+                        Now!</button>
                 </div>
-                <!-- <label class="maxView">Any Certification</label>
-                <input type="file" class="input-box" #file formControlName="files" placeholder="choose the file"
-                    (change)="upload(file.files)"><br>
-                <label class="maxView">Resume</label>
-                <input type="file" class="form-control" #resume formControlName="filesResume" placeholder="choose the file"
-                    (change)="upload(resume.files)"><br>
-                <label class="maxView">Additional Documents</label>
-                <input type="file" class="form-control" #document formControlName="additionalfiles"
-                    placeholder="choose the file" (change)="upload(document.files)"><br> -->
-
-                <button type="submit" class="btn btn-primary" (click)="registrationLogin()">Register Now!</button>
-
-
             </form>
         </div>
     </div>
+
 </section>

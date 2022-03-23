@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { HttpClient, HttpEventType } from '@angular/common/http';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../service/api.service';
 import Swal from 'sweetalert2';
 @Component({
@@ -10,19 +9,14 @@ import Swal from 'sweetalert2';
   styleUrls: ['./candidate-registration.component.scss']
 })
 export class CandidateRegistrationComponent implements OnInit {
-  @Input() public fileUrl: string = '';
 
-  flag: boolean = true;
+  radioButton: boolean = true;
   attachmentPath: any = [];
   attachmentId: any = [];
-  datavale: any;
-  response = { dppath: '' };
-  message: any;
-  progress: any;
-  progressView: any;
+  candidateRegistrationalue: any;
   formData: any;
-  form = new FormGroup({
 
+  form = new FormGroup({
     Name: new FormControl('', Validators.required),
     EmailId: new FormControl('', Validators.required),
     phoneNumber: new FormControl('', Validators.required),
@@ -38,33 +32,42 @@ export class CandidateRegistrationComponent implements OnInit {
     Citizenship: new FormControl('', Validators.required),
     CurrentRole: new FormControl('', Validators.required),
     CurrentCity: new FormControl('', Validators.required),
-    PositionApplied: new FormControl('', Validators.required),  
+    PositionApplied: new FormControl('', Validators.required),
     IdentityCardNumber: new FormControl('', Validators.required),
-    files: new FormControl('', Validators.required),
-    filesResume: new FormControl('', Validators.required),
-    additionalfiles: new FormControl('', Validators.required)
+    filesResume: new FormControl(''),
+    files: new FormControl(''),
+    additionalfiles: new FormControl('')
 
   })
 
-  constructor(private detail: ApiService, private http: HttpClient) {
+  constructor(private registrationService: ApiService) {
   }
 
   ngOnInit(): void {
   }
 
-  submit(candidateDetails: any) {
-
-    this.detail.createPost(candidateDetails)
-      .subscribe(data => {
-        this.datavale = data
-        alert('')
-        console.log(data)
-        this.form.reset();
-        console.log(this.form.value.name)
-      })
+  candidateFormSubmission(candidateDetails: any) {
+    candidateDetails.AttachmentIds = this.attachmentId.toString();
+    candidateDetails.FileLocation = this.attachmentPath.toString();
+    this.registrationService.postCandidateDetails(candidateDetails).subscribe(data => {
+      this.candidateRegistrationalue = data;
+      this.form.reset();
+    });
   }
 
-  registrationLogin() {
+  uploadcandidateFile = (files: any, fileType: string) => {
+    let filetoUpoload = <File>files[0];
+    const formData = new FormData();
+    formData.append('file', filetoUpoload, filetoUpoload.name);
+    formData.append('fileType', fileType);
+    this.registrationService.uploadFileDetails(formData).subscribe((data: any) => {
+      this.attachmentId.push(data.attachmentId);
+      this.attachmentPath.push(data.attachmentPath);
+
+    });
+  }
+
+  candidateLogin() {
     console.log('data')
     if (this.form.invalid) {
       alert('Fill the Required area')
@@ -75,11 +78,8 @@ export class CandidateRegistrationComponent implements OnInit {
         icon: 'success',
         timer: 1500
       });
-      //  this.form.reset();
     }
   }
-
-
 }
 
 

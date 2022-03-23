@@ -13,12 +13,13 @@ import { MatCommonModule } from '@angular/material/core';
 import { MatOptionModule } from '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-// import { FormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { CandidateRegistrationComponent } from './candidate-registration/candidate-registration.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { AdminCandidateTableComponent } from './admin-candidate-table/admin-candidate-table.component';
 import { HttpClientModule } from '@angular/common/http';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { AttachmnetsComponent } from './attachmnets/attachmnets.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     AppComponent,
     CandidateRegistrationComponent,
     AdminPanelComponent,
-    AdminCandidateTableComponent
+    AdminCandidateTableComponent,
+    AttachmnetsComponent
     
   ],
 
@@ -44,7 +46,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     MatOptionModule,
     ReactiveFormsModule,
     HttpClientModule,
-    // FormsModule
+    FormsModule,
     Ng2SearchPipeModule
     
 

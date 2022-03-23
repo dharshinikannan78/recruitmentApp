@@ -5,48 +5,43 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ApiService {
 
-  dataUser: any;
-  
-  url = 'https://localhost:5001/api/Values';
- 
-  adminLogin='https://localhost:5001/api/AdminController1/Login';
-  urlpostFileAttachment = 'https://localhost:5001/api/Values';
-  urlGetFileAttachment ='https://localhost:5001/api/Values';
+  adminLoginPanel = 'https://localhost:44340/api/Admin/Login';
+  postCandidateDetailsUrl = 'https://localhost:44340/api/RegDetail';
+  candidateDetailsUrl = "https://localhost:44340/api/RegDetail/GetAllEmp";
+  getdownloadAttachmentFileUrl = "https://localhost:44340/api/FileAttachment/data?id=";
+  attachmentDetailUrl = "https://localhost:44340/api/FileAttachment/GetAttachmentDetails?candidateId=";
+  getAttachmentDetailstableurl = "https://localhost:44340/api/FileAttachment/atttchmentFile";
+  uploadFileAttachmentUrl = 'https://localhost:44340/api/FileAttachment';
+
 
   constructor(private http: HttpClient) { }
 
-  getAdminLogin(postData: any){
-    return this.http.post(this.adminLogin, postData);
+  postAdminLoginPanel(adminLoginData: any) {
+    return this.http.post(this.adminLoginPanel, adminLoginData);
   }
-  getFunction(post: any) {
-    return this.http.post(this.url, post);
+
+  postCandidateDetails(candidatePostData: any) {
+    return this.http.post(this.postCandidateDetailsUrl, candidatePostData);
   }
-  // popFileaAttachment= "https://localhost:44340/api/FileAttachment/atttchmentFile"
-  // regstrationDetails  = "https://localhost:44340/api/RegDetail/GetAllEmp"
 
-  regPost = 'https://localhost:44340/api/RegDetail';
-
-  // downloadUrl ="https://localhost:44340/api/FileAttachment/data?fileUrl";
-  // fileAttachmenturl = 'https://localhost:44340/api/FileAttachment';
-  
-  // getFileAttachment(postFile:any){
-  //   return this.http.post(this.fileAttachmenturl, postFile);
-  // }
-  
-  createPost(post: any) {
-    return this.http.post(this.regPost, post);
+  getcandidateDetails() {
+    return this.http.get(this.candidateDetailsUrl);
   }
-  // getData() {
-  //   return this.http.get(this.regstrationDetails);
 
-  // }
-  // getAttachment(){
-  //   return this.http.get(this.popFileaAttachment);
-  // }
-  // getDownload(fileUrl: string){
-  //   return this.http.get(this.downloadUrl,{
-  //     reportProgress: true,
-  //     responseType: 'blob',
-  //   });
-  // }
+  downloadAttchments(attachment: number) {
+    return this.http.get(this.getdownloadAttachmentFileUrl + attachment);
+  }
+
+  getAttachmentDetail(candidateId: number) {
+    return this.http.get(this.attachmentDetailUrl + candidateId);
+  }
+
+  attachmentTableDetails() {
+    return this.http.get(this.getAttachmentDetailstableurl);
+  }
+
+  uploadFileDetails(uploadattachment: any) {
+    return this.http.post(this.uploadFileAttachmentUrl, uploadattachment);
+  }
+
 }

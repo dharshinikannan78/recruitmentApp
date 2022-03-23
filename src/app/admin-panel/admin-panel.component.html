@@ -5,28 +5,19 @@
                 <img src="../../assets/loginimg.jpg" alt="system picture" width="100%" height="100%">
             </div>
             <div class="col-md-3">
-                <h1 class="title my-3">Log In</h1>
+                <h1 class="title my-3">Admin Panel</h1>
                 <form class="mt-5" [formGroup]="loginForm">
                     <div class="input-group mb-3">
                         <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
-                        <input type="text" class="form-control" autocomplete="off" formControlName="userName"
-                            id="validationCustom01" placeholder="Username" aria-label="Username"
-                            aria-describedby="basic-addon1" name="usernameField">
-                        
-                            <span class="text-danger"
-                                *ngIf="loginForm.controls['userName'].touched && loginForm.hasError('required','userName')">*Field
-                                is required</span>
+                        <input type="text" class="form-control" autocomplete="off" formControlName="username"
+                            placeholder="Username">
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
-                        <input type="text" class="form-control" formControlName="password" placeholder="Password"
-                            aria-label="Username" aria-describedby="basic-addon1">
-                        <span class="text-danger"
-                            *ngIf="loginForm.controls['password'].touched && loginForm.hasError('required','password')">*Field
-                            is required</span>
-
+                        <input type="password" class="form-control" formControlName="password" placeholder="Password">
                     </div>
-                    <button type="submit" [disabled]="loginForm.valid" class="btn btn-primary my-3"  (click)="getUserdetails(loginForm.value)">Log in</button>
+                    <button type="submit" class="btn btn-primary my-3" (click)="adminCredentials(loginForm.value)">Log
+                        in</button>
                 </form>
             </div>
         </div>

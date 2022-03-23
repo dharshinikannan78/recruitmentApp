@@ -1,189 +1,162 @@
 <section class="wrap ">
-    <!-- <div class="container"> -->
     <div class="content">
         <svg class="wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-            <path fill="#1D66DE" fill-opacity="1"
+            <path fill="#2D31FA" fill-opacity="1"
                 d="M0,160L80,170.7C160,181,320,203,480,181.3C640,160,800,96,960,74.7C1120,53,1280,75,1360,85.3L1440,96L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z">
             </path>
-            <text x="70" y="115" fill="white" font-size="70px"> User Details</text>
+            <text x="80" y="115" fill="white" font-size="50PX">CANDIDATE DETAILS</text>
         </svg>
         <div class="table-responsive">
+            <input type="text" class="form-control maxwidth" placeholder="Search" [(ngModel)]="searchValue">
             <table class="table table-bordered table-hover text-center">
-                <!--bg-dark text-white -->
-                <thead class=" bg-primary text-white">
-                    <tr class="header">
-                        <th>Candidate</th>
-                        <th>Full Name</th>
-                        <th>Email Id</th>
-                        <th>Phone Number</th>
-                        <th>Aadhaar Card Number</th>
-                        <th>Passport Number</th>
-                        <th>Education</th>
-                        <th>Skill Sets</th>
-                        <th>Experienced</th>
-                        <th>Fresher </th>
-                        <th>Current Position</th>
-                        <th>Current ctc</th>
-                        <th>Expected ctc</th>
-                        <th>Position Applied For</th>
-                        <th>Availability</th>
-                        <th>Current City</th>
-                        <th>Country Residing </th>
-                        <th>Citizenship</th>
-                        <th>Resume</th>
-                        <th>Any Cert</th>
-                        <th>additional Cert</th>
+                <thead class="headerColor">
+                    <tr>
+                        <th>CANDIDATE</th>
+                        <th>FULLNAME</th>
+                        <th>EMAIL ID</th>
+                        <th>NUMBER</th>
+                        <th>EDUCATION</th>
+                        <th>SKILL SET</th>
+                        <th>EXPERIENCE</th>
+                        <th>FRESHER</th>
+                        <th>CURRENT CITY</th>
+                        <th>POSITION APPLIED</th>
+                        <th>CURRENT POSITION</th>
+                        <th>CURRENT CTC</th>
+                        <th>EXPECTED CTC</th>
+                        <th>AVALABILITY</th>
+                        <th>IDENTITYCARD NO</th>
+                        <th>PASSPORT NUMBER</th>
+                        <th>COUNTRY RESIDING</th>
+                        <th>CITIZENSHIP</th>
+                        <th>ATTACHMENTS</th>
+
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let item of dataValue  | filter : searchValue" data-bs-toggle="modal"
-                        attr.data-bs-target="#example{{item.candidateId}}">
-
-                        <td>{{item.candidateId}}</td>
-                        <td>{{item.name}}</td>
-                        <td>{{item.emailId}}</td>
-                        <td>{{item.phoneNumber}}</td>
-                        <td>{{item.identityCardNumber}}</td>
-                        <td>{{item.passPort}}</td>
-                        <td>{{item.educationDetails}}</td>
-                        <td>{{item.skillSet}}</td>
-                        <td>{{item.experience}}</td>
-                        <td>{{item.fresher}}</td>
-                        <td>{{item.currentCity}}</td>
-                        <td>{{item.currentRole}}</td>
-                        <td>{{item.currentCtc}}</td>
-                        <td>{{item.expectedCtc}}</td>
-                        <td>{{item.positionApplied}}</td>
-                        <td>{{item.availabilty}}</td>
-                        <td>{{item.countryResiding}}</td>
-                        <td>{{item.citizenship}}</td>
-                        <td>{{item.attachmentIds}}</td>
-
-
+                    <tr *ngFor="let candidateList of getCandidateList  | filter : searchValue" data-bs-toggle="modal"
+                        attr.data-bs-target="#getCandidateId{{candidateList.candidateId}}">
+                        <td>{{candidateList.candidateId}}</td>
+                        <td>{{candidateList.name}}</td>
+                        <td>{{candidateList.emailId}}</td>
+                        <td>{{candidateList.phoneNumber}}</td>
+                        <td>{{candidateList.educationDetails}}</td>
+                        <td>{{candidateList.skillSet}}</td>
+                        <td>{{candidateList.experience}}</td>
+                        <td>{{candidateList.fresher}}</td>
+                        <td>{{candidateList.currentCity}}</td>
+                        <td>{{candidateList.positionApplied}}</td>
+                        <td>{{candidateList.currentRole}}</td>
+                        <td>{{candidateList.currentCtc}}</td>
+                        <td>{{candidateList.expectedCtc}}</td>
+                        <td>{{candidateList.availabilty}}</td>
+                        <td>{{candidateList.identityCardNumber}}</td>
+                        <td>{{candidateList.passPort}}</td>
+                        <td>{{candidateList.countryResiding}}</td>
+                        <td>{{candidateList.citizenship}}</td>
+                        <td>{{candidateList.attachmentIds}}</td>
                     </tr>
-
                 </tbody>
             </table>
         </div>
 
-        <!-- </div> -->
-        <!-- Button trigger modal -->
-        <!-- <button type="button" class="btn btn-primary" >
-            VIEW
-        </button> -->
-
-        <!-- Modal -->
-        <div *ngFor="let item of dataValue">
-            <div class="modal fade" attr.id="example{{item.candidateId}}" tabindex="-1"
+        <div *ngFor="let candidateList of getCandidateList">
+            <div class="modal fade" attr.id="getCandidateId{{candidateList.candidateId}}" tabindex="-1"
                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">USER DETAILS</h5>
+                            <h5 class="modal-title" id="exampleModalLabel"> CANDIDATE DETAILS</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body">
+                        <div class="modal-body" id="scrollBarHidden">
                             <table class="table" style="text-align: center;">
                                 <thead>
                                     <tr>
                                         <th>Name </th>
-                                        <td>{{item.name}}</td>
+                                        <td>{{candidateList.name}}</td>
                                     </tr>
                                     <tr>
                                         <th>Email </th>
-                                        <td>{{item.emailId}}</td>
+                                        <td>{{candidateList.emailId}}</td>
                                     </tr>
                                     <tr>
                                         <th>Number </th>
-                                        <td>{{item.phoneNumber}}</td>
+                                        <td>{{candidateList.phoneNumber}}</td>
                                     </tr>
                                     <tr>
                                         <th>Aadhaar Card Number </th>
-                                        <td>{{item.identityCardNumber}}</td>
+                                        <td>{{candidateList.identityCardNumber}}</td>
                                     </tr>
                                     <tr>
                                         <th>Passport Number </th>
-                                        <td>{{item.passPort}}</td>
+                                        <td>{{candidateList.passPort}}</td>
                                     </tr>
                                     <tr>
                                         <th>Education </th>
-                                        <td>{{item.educationDetails}}</td>
+                                        <td>{{candidateList.educationDetails}}</td>
                                     </tr>
                                     <tr>
                                         <th>Skill Sets </th>
-                                        <td>{{item.skillSet}}</td>
+                                        <td>{{candidateList.skillSet}}</td>
                                     </tr>
                                     <tr>
                                         <th>Experienced</th>
-                                        <td>{{item.experience}}</td>
+                                        <td>{{candidateList.experience}}</td>
                                     </tr>
                                     <tr>
                                         <th>Fresher </th>
-                                        <td>{{item.fresher}}</td>
+                                        <td>{{candidateList.fresher}}</td>
                                     </tr>
                                     <tr>
                                         <th>Current City </th>
-                                        <td>{{item.currentCity}}</td>
+                                        <td>{{candidateList.currentCity}}</td>
                                     </tr>
                                     <tr>
                                         <th>Current Position</th>
-                                        <td>{{item.currentRole}}</td>
+                                        <td>{{candidateList.currentRole}}</td>
                                     </tr>
                                     <tr>
                                         <th>Current Ctc</th>
-                                        <td>{{item.currentCtc}}</td>
+                                        <td>{{candidateList.currentCtc}}</td>
                                     </tr>
                                     <tr>
                                         <th>Expected Ctc</th>
-                                        <td>{{item.expectedCtc}}</td>
+                                        <td>{{candidateList.expectedCtc}}</td>
                                     </tr>
                                     <tr>
                                         <th>Position Applied For </th>
-                                        <td>{{item.positionApplied}}</td>
+                                        <td>{{candidateList.positionApplied}}</td>
                                     </tr>
                                     <tr>
                                         <th>Availability </th>
-                                        <td>{{item.availabilty}}</td>
+                                        <td>{{candidateList.availabilty}}</td>
                                     </tr>
 
                                     <tr>
                                         <th>Country Residing </th>
-                                        <td>{{item.countryResiding}}</td>
+                                        <td>{{candidateList.countryResiding}}</td>
                                     </tr>
                                     <tr>
                                         <th>Citizenship </th>
-                                        <td>{{item.citizenship}}</td>
+                                        <td>{{candidateList.citizenship}}</td>
                                     </tr>
                                     <tr>
-                                        <th>Resume </th>
-                                        <td><button class="btn1"><i class="fa fa-download"></i> Download</button></td>
-                                    </tr>
-
-                                    <tr>
-                                        <th>Any Cert </th>
-                                        <td><button class="btn1"><i class="fa fa-download"></i> Download</button></td>
-                                    </tr>
-                                    <tr>
-                                        <th>Additional Cert </th>
-                                        <td><button class="btn1"><i class="fa fa-download"></i> Download</button></td>
+                                        <th>Resume</th>
+                                        <td>
+                                            <app-attachmnets [candidateId]="candidateList.candidateId">
+                                            </app-attachmnets>
+                                        </td>
                                     </tr>
                                 </thead>
                             </table>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <!-- <button type="button" class="btn btn-primary">Download</button>  -->
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- <div class="" *ngFor="let item of dataValue" >
-        {{item.FileLocation}}
-       </div>
-       
-       
-       
-       <a href="https://localhost:44340/api/FileAttachment/data?fileUrl=Resource%5C%5CImages%5C%5C3%202022%2016%5C%5C5178.pdf" download>dowload</a> -->
 </section>
