@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../service/api.service';
 import Swal from 'sweetalert2';
+import { IfStmt } from '@angular/compiler';
 @Component({
 
   selector: 'app-candidate-registration',
@@ -10,34 +11,37 @@ import Swal from 'sweetalert2';
 })
 export class CandidateRegistrationComponent implements OnInit {
 
+  ischeckMail: boolean = true;
+  valueOfMail: any;
+  submitted = false;
   radioButton: boolean = true;
   attachmentPath: any = [];
   attachmentId: any = [];
   candidateRegistrationalue: any;
   formData: any;
+  isShowError: boolean = false;
 
-  form = new FormGroup({
+  form: FormGroup = new FormGroup({
     Name: new FormControl('', Validators.required),
-    EmailId: new FormControl('', Validators.required),
-    phoneNumber: new FormControl('', Validators.required),
-    Experience: new FormControl('', Validators.required),
-    Fresher: new FormControl('', Validators.required),
-    SkillSet: new FormControl('', Validators.required),
-    EducationDetails: new FormControl('', Validators.required),
-    CurrentCtc: new FormControl('', Validators.required),
-    ExpectedCtc: new FormControl('', Validators.required),
-    Availabilty: new FormControl('', Validators.required),
-    PassPort: new FormControl('', Validators.required),
-    CountryResiding: new FormControl('', Validators.required),
-    Citizenship: new FormControl('', Validators.required),
+    EmailId: new FormControl('', [Validators.required, Validators.pattern(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]),
+    phoneNumber: new FormControl('', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]),
+    EducationDetails: new FormControl(''),
+    SkillSet: new FormControl(''),
     CurrentRole: new FormControl('', Validators.required),
-    CurrentCity: new FormControl('', Validators.required),
+    CurrentCity: new FormControl(''),
+    Experience: new FormControl(''),
+    CurrentCtc: new FormControl(''),
+    ExpectedCtc: new FormControl(''),
     PositionApplied: new FormControl('', Validators.required),
-    IdentityCardNumber: new FormControl('', Validators.required),
-    filesResume: new FormControl(''),
-    files: new FormControl(''),
-    additionalfiles: new FormControl('')
-
+    Availabilty: new FormControl(''),
+    IdentityCardNumber: new FormControl(''),
+    CountryResiding: new FormControl(''),
+    Citizenship: new FormControl(''),
+    MessageField: new FormControl(''),
+    filesResume: new FormControl('', Validators.required),
+    // PassPort: new FormControl('', Validators.required),
+    // files: new FormControl('', Validators.required),
+    // additionalfiles: new FormControl('', Validators.required)
   })
 
   constructor(private registrationService: ApiService) {
@@ -46,11 +50,43 @@ export class CandidateRegistrationComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  thisFormValid() {
+    if (this.form.invalid || this.ischeckMail) {
+      return true;
+    }
+    return false;
+  }
+
+  checkMail() {
+    this.isShowError = false
+    this.ischeckMail = true;
+    if (this.f.EmailId.invalid) {
+      return
+    }
+    this.registrationService.getMail(this.f.EmailId.value).subscribe((data: any) => {
+      if (data['message'] == 'You Can Enter') {
+        this.ischeckMail = false
+      } else {
+        this.ischeckMail = true;
+        this.isShowError = true
+      }
+      console.log(data, 'Email')
+    });
+  }
+
+  get f() { return this.form.controls; }
+
   candidateFormSubmission(candidateDetails: any) {
+    // this.submitted = true;
     candidateDetails.AttachmentIds = this.attachmentId.toString();
     candidateDetails.FileLocation = this.attachmentPath.toString();
-    this.registrationService.postCandidateDetails(candidateDetails).subscribe(data => {
-      this.candidateRegistrationalue = data;
+    this.registrationService.postCandidateDetails(candidateDetails).subscribe((dataElement: any) => {
+      console.log(dataElement, 'dataElement')
+      Swal.fire({
+        text: 'Register Sucessfully!',
+        icon: 'success',
+        timer: 1500
+      });
       this.form.reset();
     });
   }
@@ -63,22 +99,7 @@ export class CandidateRegistrationComponent implements OnInit {
     this.registrationService.uploadFileDetails(formData).subscribe((data: any) => {
       this.attachmentId.push(data.attachmentId);
       this.attachmentPath.push(data.attachmentPath);
-
     });
-  }
-
-  candidateLogin() {
-    console.log('data')
-    if (this.form.invalid) {
-      alert('Fill the Required area')
-    }
-    else {
-      Swal.fire({
-        text: 'Register Sucessfully!',
-        icon: 'success',
-        timer: 1500
-      });
-    }
   }
 }
 

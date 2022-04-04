@@ -1,3 +1,5 @@
-<div *ngFor="let attachment of attachmentDetails">
-    <div (click)="downloadAttachment(attachment.attachmentId)">{{attachment.attachmentType}}</div>
+<div *ngIf="isCreate">
+    <div *ngFor="let attachment of attachmentDetails">
+        <div (click)="downloadAttachment(attachment?.attachmentId)">{{attachment?.attachmentType}}</div>
+    </div>
 </div>

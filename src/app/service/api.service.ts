@@ -12,7 +12,10 @@ export class ApiService {
   attachmentDetailUrl = "https://localhost:44340/api/FileAttachment/GetAttachmentDetails?candidateId=";
   getAttachmentDetailstableurl = "https://localhost:44340/api/FileAttachment/atttchmentFile";
   uploadFileAttachmentUrl = 'https://localhost:44340/api/FileAttachment';
-
+  mail = 'https://localhost:44340/api/RegDetail/Emila?obj=';
+  getApplicantId = "https://localhost:44340/api/RegDetail/applicant?obj=";
+  updatestatus = "https://localhost:44340/api/RegDetail";
+  deleteCandidateUrl = "https://localhost:44340/api/RegDetail/delete?id=";
 
   constructor(private http: HttpClient) { }
 
@@ -23,6 +26,7 @@ export class ApiService {
   postCandidateDetails(candidatePostData: any) {
     return this.http.post(this.postCandidateDetailsUrl, candidatePostData);
   }
+
 
   getcandidateDetails() {
     return this.http.get(this.candidateDetailsUrl);
@@ -43,5 +47,16 @@ export class ApiService {
   uploadFileDetails(uploadattachment: any) {
     return this.http.post(this.uploadFileAttachmentUrl, uploadattachment);
   }
-
+  getMail(Email: any) {
+    return this.http.get(this.mail + Email);
+  }
+  getApllicantIdStatus(getApplicantIds: any) {
+    return this.http.get(this.getApplicantId + getApplicantIds);
+  }
+  updateApi(data: any) {
+    return this.http.put(this.updatestatus, data)
+  }
+  deleteCandidateDetails(candidateDeleteId: any) {
+    return this.http.delete(this.deleteCandidateUrl + candidateDeleteId)
+  }
 }

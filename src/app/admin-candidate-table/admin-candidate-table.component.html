@@ -1,162 +1,176 @@
-<section class="wrap ">
-    <div class="content">
-        <svg class="wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-            <path fill="#2D31FA" fill-opacity="1"
-                d="M0,160L80,170.7C160,181,320,203,480,181.3C640,160,800,96,960,74.7C1120,53,1280,75,1360,85.3L1440,96L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z">
-            </path>
-            <text x="80" y="115" fill="white" font-size="50PX">CANDIDATE DETAILS</text>
-        </svg>
-        <div class="table-responsive">
-            <input type="text" class="form-control maxwidth" placeholder="Search" [(ngModel)]="searchValue">
-            <table class="table table-bordered table-hover text-center">
-                <thead class="headerColor">
-                    <tr>
-                        <th>CANDIDATE</th>
-                        <th>FULLNAME</th>
-                        <th>EMAIL ID</th>
-                        <th>NUMBER</th>
-                        <th>EDUCATION</th>
-                        <th>SKILL SET</th>
-                        <th>EXPERIENCE</th>
-                        <th>FRESHER</th>
-                        <th>CURRENT CITY</th>
-                        <th>POSITION APPLIED</th>
-                        <th>CURRENT POSITION</th>
-                        <th>CURRENT CTC</th>
-                        <th>EXPECTED CTC</th>
-                        <th>AVALABILITY</th>
-                        <th>IDENTITYCARD NO</th>
-                        <th>PASSPORT NUMBER</th>
-                        <th>COUNTRY RESIDING</th>
-                        <th>CITIZENSHIP</th>
-                        <th>ATTACHMENTS</th>
-
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let candidateList of getCandidateList  | filter : searchValue" data-bs-toggle="modal"
-                        attr.data-bs-target="#getCandidateId{{candidateList.candidateId}}">
-                        <td>{{candidateList.candidateId}}</td>
-                        <td>{{candidateList.name}}</td>
-                        <td>{{candidateList.emailId}}</td>
-                        <td>{{candidateList.phoneNumber}}</td>
-                        <td>{{candidateList.educationDetails}}</td>
-                        <td>{{candidateList.skillSet}}</td>
-                        <td>{{candidateList.experience}}</td>
-                        <td>{{candidateList.fresher}}</td>
-                        <td>{{candidateList.currentCity}}</td>
-                        <td>{{candidateList.positionApplied}}</td>
-                        <td>{{candidateList.currentRole}}</td>
-                        <td>{{candidateList.currentCtc}}</td>
-                        <td>{{candidateList.expectedCtc}}</td>
-                        <td>{{candidateList.availabilty}}</td>
-                        <td>{{candidateList.identityCardNumber}}</td>
-                        <td>{{candidateList.passPort}}</td>
-                        <td>{{candidateList.countryResiding}}</td>
-                        <td>{{candidateList.citizenship}}</td>
-                        <td>{{candidateList.attachmentIds}}</td>
-                    </tr>
-                </tbody>
-            </table>
+<section class="cardDesign">
+    <mat-card class="cardProperty cardDesign">CANDIDATE DETAILS</mat-card>
+    <diV class="container-fluid">
+        <div class="row mt-5">
+            <div class="col-3">
+                <div class="example-button-container buttonView">
+                    <button mat-mini-fab color="accent" aria-label="Example icon button with a plus one icon">
+                        <mat-icon (click)="getRegisterPage()">plus_one</mat-icon>
+                    </button>
+                </div>
+            </div>
+            <div class="col-4">
+                <input type="text" class="form-control searchBox" placeholder="Search" [(ngModel)]="searchValue">
+            </div>
         </div>
-
-        <div *ngFor="let candidateList of getCandidateList">
-            <div class="modal fade" attr.id="getCandidateId{{candidateList.candidateId}}" tabindex="-1"
-                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel"> CANDIDATE DETAILS</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </diV>
+    <div class="container">
+        <div class="row mt-5">
+            <mat-card *ngFor="let candidateList of getCandidateList | filter : searchValue " class="example-card"
+                data-toggle="modal" (click)="getCandidateDetails(candidateList)" data-target="#bootstrapModel">
+                <mat-card-title>
+                    <div class="row mt-2">
+                        <div class="col-2">
+                            <i class="bi bi-person-circle iconView"> </i>
                         </div>
-                        <div class="modal-body" id="scrollBarHidden">
-                            <table class="table" style="text-align: center;">
-                                <thead>
-                                    <tr>
-                                        <th>Name </th>
-                                        <td>{{candidateList.name}}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Email </th>
-                                        <td>{{candidateList.emailId}}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Number </th>
-                                        <td>{{candidateList.phoneNumber}}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Aadhaar Card Number </th>
-                                        <td>{{candidateList.identityCardNumber}}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Passport Number </th>
-                                        <td>{{candidateList.passPort}}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Education </th>
-                                        <td>{{candidateList.educationDetails}}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Skill Sets </th>
-                                        <td>{{candidateList.skillSet}}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Experienced</th>
-                                        <td>{{candidateList.experience}}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Fresher </th>
-                                        <td>{{candidateList.fresher}}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Current City </th>
-                                        <td>{{candidateList.currentCity}}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Current Position</th>
-                                        <td>{{candidateList.currentRole}}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Current Ctc</th>
-                                        <td>{{candidateList.currentCtc}}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Expected Ctc</th>
-                                        <td>{{candidateList.expectedCtc}}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Position Applied For </th>
-                                        <td>{{candidateList.positionApplied}}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Availability </th>
-                                        <td>{{candidateList.availabilty}}</td>
-                                    </tr>
-
-                                    <tr>
-                                        <th>Country Residing </th>
-                                        <td>{{candidateList.countryResiding}}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Citizenship </th>
-                                        <td>{{candidateList.citizenship}}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Resume</th>
-                                        <td>
-                                            <app-attachmnets [candidateId]="candidateList.candidateId">
-                                            </app-attachmnets>
-                                        </td>
-                                    </tr>
-                                </thead>
-                            </table>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <div class="col-6  listViewStyle">
+                            {{candidateList.name}}
                         </div>
                     </div>
+                </mat-card-title>
+                <mat-card-subtitle>
+                    <div class="row mt-4">
+                        <div class="col-2">
+                            <i class="bi bi-envelope-fill iconView"></i>
+                        </div>
+                        <div class="col-8">
+                            {{candidateList.emailId}}
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-2">
+                            <i class="bi bi-telephone-fill iconView"></i>
+                        </div>
+                        <div class="col-5">
+                            {{candidateList.phoneNumber}}
+                        </div>
+                    </div>
+                </mat-card-subtitle>
+                <mat-card-content>
+                    <div class="row">
+                        <div class="col ">
+                            <div class="apllicantView">
+                                {{candidateList.applicantStatus}}
+
+                            </div>
+                        </div>
+                    </div>
+
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</section>
+<div>
+
+
+    <div class="modal" [style.display]="showModal ? 'block' : 'none'">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title text-white"> CANDIDATE DETAILS</h3>
+                    <button type="button" class="btn-close closebutton" (click)="showModal=false"></button>
+                </div>
+                <div class="modal-body" class="scrollbar" id="style-1">
+                    <div class="row mt-2">
+                        <div class="mb-3">
+                            <label class=" form-label">Name</label>
+                            <input class="form-control" disabled="disabled" [ngModel]="candidateDetails?.name">
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="mb-3">
+                            <label class="form-label">Email Id</label>
+                            <input class="form-control" disabled="disabled" [ngModel]="candidateDetails?.emailId">
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="mb-3">
+                            <label class="form-label">Mobile Number</label>
+                            <input class="form-control" disabled="disabled" [ngModel]="candidateDetails?.phoneNumber">
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="mb-3">
+                            <label class="form-label">Education</label>
+                            <input class="form-control" disabled="disabled"
+                                [ngModel]="candidateDetails?.educationDetails">
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="mb-3">
+                            <label class="form-label">Skill Sets</label>
+                            <input class="form-control" disabled="disabled" [ngModel]="candidateDetails?.skillSet">
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="mb-3">
+                            <label class="form-label">Current Position</label>
+                            <input class="form-control" disabled="disabled" [ngModel]="candidateDetails?.currentRole">
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="mb-3">
+                            <label class="form-label">Current Salary</label>
+                            <input class="form-control" disabled="disabled" [ngModel]="candidateDetails?.currentCtc">
+                        </div>
+                    </div>
+
+                    <div class="row mt-2">
+                        <div class="mb-3">
+                            <label class="form-label">Country Residing</label>
+                            <input class="form-control" disabled="disabled"
+                                [ngModel]="candidateDetails?.countryResiding">
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="mb-3">
+                            <label class="form-label">Citizenship</label>
+                            <input class="form-control" disabled="disabled" [ngModel]="candidateDetails?.citizenship">
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="mb-3">
+                            <label class="form-label">Current City</label>
+                            <input class="form-control" disabled="disabled" [ngModel]="candidateDetails?.currentCity">
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <label class="form-label"> Expected Salary</label>
+                        <div class="col-8 mb-3">
+                            <input class="form-control" (click)="onSelect()" [ngModel]="candidateDetails?.expectedCtc">
+                        </div>
+                        <div class="col-2">
+                            <i class="bi bi-save " *ngIf="isEditTable" (click)="onEditSave()"></i>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="mb-3">
+                            <label class="mt-2 form-label">Attachments</label>
+                            <app-attachmnets [CandidateId]="attachmentDetails">
+                            </app-attachmnets>
+                        </div>
+                    </div>
+
+
+                    <div class="row mt-2">
+                        <label class="mb-3">Apllicant Status</label>
+                        <div>
+                            <select class="form-select" (change)="onChange($event)" required>
+                                <option class="option-Form">Open this select menu</option>
+                                <option value="selected">Selected</option>
+                                <option value="non-selected">Non Selected</option>
+                                <option value="waiting">Waiting List</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary buttonClose"
+                        (click)="showModal= false">Close</button>
                 </div>
             </div>
         </div>
     </div>
-</section>
+</div>

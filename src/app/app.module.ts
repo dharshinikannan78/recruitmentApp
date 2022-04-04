@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -12,6 +11,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatCommonModule } from '@angular/material/core';
 import { MatOptionModule } from '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatTableModule } from '@angular/material/table';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CandidateRegistrationComponent } from './candidate-registration/candidate-registration.component';
@@ -20,20 +20,27 @@ import { AdminCandidateTableComponent } from './admin-candidate-table/admin-cand
 import { HttpClientModule } from '@angular/common/http';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { AttachmnetsComponent } from './attachmnets/attachmnets.component';
-
-
+import { MatChipsModule } from '@angular/material/chips';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatCardModule } from '@angular/material/card';
 @NgModule({
   declarations: [
     AppComponent,
     CandidateRegistrationComponent,
     AdminPanelComponent,
     AdminCandidateTableComponent,
-    AttachmnetsComponent
-    
+    AttachmnetsComponent,
+
+
   ],
 
   imports: [
     BrowserModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatCardModule,
+    MatTableModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatSliderModule,
@@ -47,8 +54,9 @@ import { AttachmnetsComponent } from './attachmnets/attachmnets.component';
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
-    Ng2SearchPipeModule
-    
+    Ng2SearchPipeModule,
+    MatChipsModule
+
 
   ],
   providers: [],

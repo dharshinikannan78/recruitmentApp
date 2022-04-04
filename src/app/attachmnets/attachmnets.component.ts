@@ -11,18 +11,23 @@ import * as FileSaver from 'file-saver';
 })
 export class AttachmnetsComponent implements OnInit {
 
-
-  @Input() candidateId: any;
+  isCreate = false;
+  // @Input() CandidateId: any;
+  @Input() set CandidateId(value: any) {
+    if (value) {
+      console.log('CandidateId', this.CandidateId);
+      this.attachmentDetails = value;
+      this.isCreate = true;
+    }
+  }
   attachmentDetails: any;
 
   constructor(private registrationService: ApiService, private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.registrationService.getAttachmentDetail(this.candidateId).subscribe(data => {
-      this.attachmentDetails = data;
-      console.log(data)
-    });
+
   }
+
 
   downloadAttachment(id: number) {
     return this.http.get('https://localhost:44340/api/FileAttachment/data?id=' + id, { responseType: 'blob' })

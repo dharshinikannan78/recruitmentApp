@@ -9,20 +9,32 @@ import { Router } from '@angular/router';
 })
 export class AdminPanelComponent implements OnInit {
 
-  public loginForm!: FormGroup
 
-  constructor(private registrationService: ApiService, private router: Router) { }
+  public loginForm!: FormGroup
+  submitted = false;
+
+  constructor(private registrationService: ApiService, private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
-    this.loginForm = new FormGroup({
-      username: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required),
-    })
+    this.loginForm = this.formBuilder.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required]
+    });
+  }
+  thisAdminValid() {
+    if (this.loginForm.invalid) {
+      return true;
+    }
+    return false;
   }
 
+  get f() { return this.loginForm.controls; }
+
+
   adminCredentials(post: any) {
+    this.submitted = true;
+
     if (this.loginForm.invalid) {
-      alert('Get the Credentials');
     } else {
       this.registrationService.postAdminLoginPanel(post).subscribe((data: any) => {
         this.router.navigate(['table'])
@@ -30,4 +42,6 @@ export class AdminPanelComponent implements OnInit {
     }
     this.loginForm.reset()
   }
+
+
 }
