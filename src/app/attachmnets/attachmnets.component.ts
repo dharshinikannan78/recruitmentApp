@@ -37,7 +37,6 @@ export class AttachmnetsComponent implements OnInit {
         const blob = new Blob([fileName], { type: "application/octet-stream" })
         console.log(blob)
         const url = window.URL.createObjectURL(blob)
-        // window.open(url,fileName);
         FileSaver.saveAs(url, fileName);
         console.log('success')
       })
