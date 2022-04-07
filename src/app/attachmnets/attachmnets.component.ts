@@ -30,16 +30,18 @@ export class AttachmnetsComponent implements OnInit {
 
 
   downloadAttachment(id: number) {
-    return this.http.get('https://localhost:44310/api/Fileattachment/data?id=' + id, { responseType: 'blob' })
+    return this.http.get('https://localhost:44310/api/FileAttachment/data?id=' + id, { responseType: 'blob' })
       .subscribe((result) => {
-        console.log(result)
+        console.log(result);
+        // const contentDispositionHeader : string = result.headers.get('Content-Disposition') ;
         const fileName = result.type;
         const blob = new Blob([fileName], { type: "application/octet-stream" })
         console.log(blob)
         const url = window.URL.createObjectURL(blob)
-        FileSaver.saveAs(url, fileName);
+        FileSaver.saveAs(url, 'text.png');
         console.log('success')
       })
   }
 
 }
+// , observe: 'response' 
