@@ -30,7 +30,7 @@ export class AttachmnetsComponent implements OnInit {
 
 
   downloadAttachment(id: number) {
-    return this.http.get('https://localhost:44340/api/FileAttachment/data?id=' + id, { responseType: 'blob' })
+    return this.http.get('https://localhost:44310/api/Fileattachment/data?id=' + id, { responseType: 'blob' })
       .subscribe((result) => {
         console.log(result)
         const fileName = result.type;

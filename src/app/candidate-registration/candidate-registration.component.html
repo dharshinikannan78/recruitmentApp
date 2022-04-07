@@ -25,8 +25,8 @@
                                 [ngClass]="{ 'is-invalid': submitted && f.EmailId.errors }">
                             <span class="text-danger" *ngIf="!form.controls['EmailId'].valid && 
                         form.controls['EmailId']?.touched">Email is required *</span>
-                            <div class="ShowError" *ngIf="isShowError == true">
-                                User already exist
+                            <div class="text-danger" style="margin-top: 2%;" *ngIf="isShowError == true">
+                                User Already exist Please Enter the valid Email Address
                             </div>
                         </div>
                         <div class="mb-3">

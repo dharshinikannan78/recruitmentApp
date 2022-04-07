@@ -5,17 +5,17 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ApiService {
 
-  adminLoginPanel = 'https://localhost:44340/api/Admin/Login';
-  postCandidateDetailsUrl = 'https://localhost:44340/api/RegDetail';
-  candidateDetailsUrl = "https://localhost:44340/api/RegDetail/GetAllEmp";
-  getdownloadAttachmentFileUrl = "https://localhost:44340/api/FileAttachment/data?id=";
-  attachmentDetailUrl = "https://localhost:44340/api/FileAttachment/GetAttachmentDetails?candidateId=";
-  getAttachmentDetailstableurl = "https://localhost:44340/api/FileAttachment/atttchmentFile";
-  uploadFileAttachmentUrl = 'https://localhost:44340/api/FileAttachment';
-  mail = 'https://localhost:44340/api/RegDetail/Emila?obj=';
-  getApplicantId = "https://localhost:44340/api/RegDetail/applicant?obj=";
-  updatestatus = "https://localhost:44340/api/RegDetail";
-  deleteCandidateUrl = "https://localhost:44340/api/RegDetail/delete?id=";
+  postCandidateDetailsUrl = 'https://localhost:44310/api/Registration';
+  candidateDetailsUrl = "https://localhost:44310/api/Registration/GetAllEmp";
+  adminLoginPanel = 'https://localhost:44310/api/User/Login';
+  mail = 'https://localhost:44310/api/Registration/Email?obj=';
+  getApplicantId = "https://localhost:44310/api/Registration/applicant?obj=";
+  updatestatus = "https://localhost:44310/api/Registration";
+  deleteCandidateUrl = "https://localhost:44310/api/Registration/delete?id=";
+  uploadFileAttachmentUrl = 'https://localhost:44310/api/Fileattachment';
+  getAttachmentDetailstableurl = "https://localhost:44310/api/Fileattachment/atttchmentFile";
+  getdownloadAttachmentFileUrl = "https://localhost:44310/api/Fileattachment/data?id=";
+  attachmentDetailUrl = "https://localhost:44310/api/Fileattachment/GetAttachmentDetails?candidateId=";
 
   constructor(private http: HttpClient) { }
 
