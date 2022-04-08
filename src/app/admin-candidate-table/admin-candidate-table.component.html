@@ -1,5 +1,5 @@
 <section class="cardDesign">
-    <mat-card class="cardProperty cardDesign">CANDIDATE DETAILS</mat-card>
+    <mat-card  class="cardProperty cardDesign">CANDIDATE DETAILS</mat-card>
     <diV class="container-fluid">
         <div class="row mt-5">
             <div class="col-3">
@@ -16,7 +16,8 @@
     </diV>
     <div class="container">
         <div class="row mt-5">
-            <mat-card *ngFor="let candidateList of getCandidateList | filter : searchValue " class="example-card"
+            <mat-card  appMaterialElevation raisedElevation="16"
+                *ngFor="let candidateList of getCandidateList | filter : searchValue " class="example-card"
                 data-toggle="modal" (click)="getCandidateDetails(candidateList)" data-target="#bootstrapModel">
                 <mat-card-title>
                     <div class="row mt-2">
@@ -46,6 +47,7 @@
                         </div>
                     </div>
                 </mat-card-subtitle>
+
                 <mat-card-content>
                     <div class="row">
                         <div class="col ">
@@ -159,7 +161,7 @@
                             <select class="form-select" (change)="onChange($event)" required>
                                 <option class="option-Form">Open this select menu</option>
                                 <option value="Selected">Selected</option>
-                                <option value="Non-selected">Non Selected</option>
+                                <option value="Non-selected">Rejected</option>
                                 <option value="Waiting">Waiting List</option>
                             </select>
                         </div>

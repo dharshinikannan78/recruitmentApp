@@ -24,6 +24,8 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
+import {MatTooltipModule} from '@angular/material/tooltip';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,7 +57,8 @@ import { MatCardModule } from '@angular/material/card';
     HttpClientModule,
     FormsModule,
     Ng2SearchPipeModule,
-    MatChipsModule
+    MatChipsModule,
+    MatTooltipModule
 
 
   ],

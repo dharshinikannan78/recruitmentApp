@@ -9,7 +9,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./admin-candidate-table.component.scss']
 })
 export class AdminCandidateTableComponent implements OnInit {
-
+  
+  raisedElevation = 100;
   popup: boolean = false;
   isEditTable: boolean = false;
   candidateDetails: any;

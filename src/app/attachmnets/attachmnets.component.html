@@ -1,5 +1,17 @@
 <div *ngIf="isCreate">
     <div *ngFor="let attachment of attachmentDetails">
-        <div (click)="downloadAttachment(attachment?.attachmentId)">{{attachment?.attachmentType}}</div>
+        <div class="row">
+            <div class="col-3 mt-2">
+                <div>{{attachment?.attachmentType}}</div>
+            </div>
+            <div class="col-1 mt-1">
+                <div class="cursorpoint"  (click)="downloadAttachment(attachment?.attachmentId)"><i
+                        class="bi bi-download" ></i></div>
+            </div>
+        </div>
+
+
     </div>
+    
 </div>
+

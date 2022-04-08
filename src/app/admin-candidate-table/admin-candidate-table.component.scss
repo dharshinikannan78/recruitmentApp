@@ -1,6 +1,10 @@
 .cardDesign{
   background-color: #e7e7e7;
   }
+  .mat-card:hover{
+box-shadow: 0.5rem 0.5rem rgb(197, 194, 194);
+
+  }
   .modal-body{
     padding: 3rem;
   }
@@ -30,9 +34,13 @@
   padding: 2rem;
   font-size: large;
   color: #fff;
+  
     background: #8E2DE2; 
   background: -webkit-linear-gradient(to left, #4f10cb, #8E2DE2); 
   background: linear-gradient(to left, #4A00E0, #8E2DE2);
+}
+.cardProperty:hover{
+  box-shadow: none;
 }
 .modal-header{
   background: #8E2DE2;
