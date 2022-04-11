@@ -1,11 +1,18 @@
 <section class="cardDesign">
-    <mat-card  class="cardProperty cardDesign">CANDIDATE DETAILS</mat-card>
-    <diV class="container-fluid">
+
+
+    <mat-card class="cardProperty cardDesign">CANDIDATE DETAILS</mat-card>
+
+    <diV class="container">
         <div class="row mt-5">
-            <div class="col-3">
-                <div class="example-button-container buttonView">
-                    <button mat-mini-fab color="accent" aria-label="Example icon button with a plus one icon">
-                        <mat-icon (click)="getRegisterPage()">plus_one</mat-icon>
+            <div class="col-1">
+                <button *ngIf="!Status" class="btn btn-danger " type="button"
+                    (click)="getarchiveDetails()">Archive</button>
+                <button *ngIf="Status" class="btn btn-danger" type="button" (click)="getAllDetails()">Active</button>
+            </div>
+            <div class="col-2">
+                <div class="buttonView">
+                    <button (click)="getRegisterPage()" class="btn btn-primary"><i class="bi bi-plus-lg"></i>Add
                     </button>
                 </div>
             </div>
@@ -16,7 +23,7 @@
     </diV>
     <div class="container">
         <div class="row mt-5">
-            <mat-card  appMaterialElevation raisedElevation="16"
+            <mat-card appMaterialElevation raisedElevation="16"
                 *ngFor="let candidateList of getCandidateList | filter : searchValue " class="example-card"
                 data-toggle="modal" (click)="getCandidateDetails(candidateList)" data-target="#bootstrapModel">
                 <mat-card-title>
@@ -139,11 +146,9 @@
                     </div>
                     <div class="row mt-2">
                         <label class="form-label"> Expected Salary</label>
-                        <div class="col-8 mb-3">
-                            <input class="form-control" (click)="onSelect()" [ngModel]="candidateDetails?.expectedCtc">
-                        </div>
-                        <div class="col-2">
-                            <i class="bi bi-save " *ngIf="isEditTable" (click)="onEditSave()"></i>
+                        <div class="mb-3">
+                            <input class="form-control" (change)="onEditSave($event)"
+                                [ngModel]="candidateDetails?.expectedCtc">
                         </div>
                     </div>
                     <div class="row mt-2">
@@ -158,19 +163,35 @@
                     <div class="row mt-2">
                         <label class="mb-3">Apllicant Status</label>
                         <div>
-                            <select class="form-select" (change)="onChange($event)" required>
-                                <option class="option-Form">Open this select menu</option>
+                            <select class="form-select" [ngModel]="candidateDetails?.applicantStatus"
+                                (change)="onChange($event)" required>
+                                <option value="Open">Open</option>
+                                <option value="InProgress">InProgress</option>
                                 <option value="Selected">Selected</option>
-                                <option value="Non-selected">Rejected</option>
-                                <option value="Waiting">Waiting List</option>
+                                <option value="Rejected">Rejected</option>
+                                <option value="Waiting">Waiting</option>
                             </select>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="mb-2">
+                            <label class="form-label">Remarks</label>
+                            <div class="col-12">
+                                <textarea class="form-control" *ngIf="isRemark" (change)="onsaveRemark($event)"
+                                    [ngModel]="candidateDetails?.remarks"></textarea>
+                            </div>
+                            <div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary buttonClose"
-                        (click)="showModal= false">Close</button>
+                    <button *ngIf=" !Status" type="button" (click)="IsArchieved()" class="btn btn-danger">Move to
+                        Archive</button>
+                    <button type="button" class="btn btn-primary buttonClose"
+                        (click)="saveEditCandidateDetails()">Save</button>
                 </div>
             </div>
         </div>

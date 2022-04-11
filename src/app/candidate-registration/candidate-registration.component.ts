@@ -39,9 +39,6 @@ export class CandidateRegistrationComponent implements OnInit {
     Citizenship: new FormControl(''),
     MessageField: new FormControl(''),
     filesResume: new FormControl('', Validators.required),
-    // PassPort: new FormControl('', Validators.required),
-    // files: new FormControl('', Validators.required),
-    // additionalfiles: new FormControl('', Validators.required)
   })
 
   constructor(private registrationService: ApiService) {
@@ -80,7 +77,7 @@ export class CandidateRegistrationComponent implements OnInit {
     // this.submitted = true;
     candidateDetails.AttachmentIds = this.attachmentId.toString();
     candidateDetails.FileLocation = this.attachmentPath.toString();
-    this.registrationService.postCandidateDetails(candidateDetails).subscribe((dataElement: any) => {
+    this.registrationService.CandidateDetails(candidateDetails).subscribe((dataElement: any) => {
       console.log(dataElement, 'dataElement')
       Swal.fire({
         text: 'Register Sucessfully!',

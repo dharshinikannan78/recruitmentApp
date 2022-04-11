@@ -24,8 +24,9 @@ export class AdminPanelComponent implements OnInit {
   thisAdminValid() {
     if (this.loginForm.invalid) {
       return true;
+      
     }
-    return false;
+     return false;
   }
 
   get f() { return this.loginForm.controls; }
@@ -33,7 +34,6 @@ export class AdminPanelComponent implements OnInit {
 
   adminCredentials(post: any) {
     this.submitted = true;
-
     if (this.loginForm.invalid) {
     } else {
       this.registrationService.postAdminLoginPanel(post).subscribe((data: any) => {

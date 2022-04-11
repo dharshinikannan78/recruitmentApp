@@ -4,10 +4,24 @@
     padding: 1.5%;
     font-size: large;
     color: #fff;
-    // background: #8E2DE2;  /* fallback for old browsers */
-    // background: -webkit-linear-gradient(to left, #4A00E0, #8E2DE2);  /* Chrome 10-25, Safari 5.1-6 */
-    // background: linear-gradient(to left, #4A00E0, #8E2DE2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   }
+  .my-label > label {
+    display: inline-block;
+    position: relative;
+  }
+  .my-label.required > label {
+    padding-right: 1em;
+  }
+  .my-label.required > label:before {
+    color: red;
+    content: "*";
+    position: absolute;
+    top: 0.01em;
+    right: 0.10em;
+  }
+//   .my-label > label:after {
+//     content: ":";
+//   }
 h1{
 color: #03045E;
 text-align: center;

@@ -5,8 +5,10 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ApiService {
 
-  postCandidateDetailsUrl = 'https://localhost:44310/api/Registration';
+  CandidateDetailsUrl = 'https://localhost:44310/api/Registration';
   candidateDetailsUrl = "https://localhost:44310/api/Registration/GetAllEmp";
+  archive = "https://localhost:44310/api/Registration/GetAllEmp?status="
+  isArchive = "https://localhost:44310/api/Registration/GetAllEmp?value=archived"
   adminLoginPanel = 'https://localhost:44310/api/User/Login';
   mail = 'https://localhost:44310/api/Registration/Email?obj=';
   getApplicantId = "https://localhost:44310/api/Registration/applicant?obj=";
@@ -22,9 +24,15 @@ export class ApiService {
   postAdminLoginPanel(adminLoginData: any) {
     return this.http.post(this.adminLoginPanel, adminLoginData);
   }
+  // archiveDetails(){
+  //   return this.http.get(this.isArchive)
+  // }
 
-  postCandidateDetails(candidatePostData: any) {
-    return this.http.post(this.postCandidateDetailsUrl, candidatePostData);
+  archiveStatus(status: any) {
+    return this.http.get(this.archive + status)
+  }
+  CandidateDetails(candidatePostData: any) {
+    return this.http.post(this.CandidateDetailsUrl, candidatePostData);
   }
 
 

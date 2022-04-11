@@ -1,9 +1,13 @@
 .cardDesign{
   background-color: #e7e7e7;
   }
+
   .mat-card:hover{
 box-shadow: 0.5rem 0.5rem rgb(197, 194, 194);
 
+  }
+  .btn-primary :focus{
+    box-shadow: none;
   }
   .modal-body{
     padding: 3rem;
@@ -15,7 +19,7 @@ box-shadow: 0.5rem 0.5rem rgb(197, 194, 194);
     text-transform: uppercase;
 }
   .searchBox{
-    margin-left: 31.5rem;
+    margin-left: 32.7rem;
     padding: 2%;
     position: relative;
   }
@@ -25,7 +29,9 @@ box-shadow: 0.5rem 0.5rem rgb(197, 194, 194);
     width: 7rem;
   }
   .buttonView{
-    margin-left: 48rem;
+    width: 25rem;
+    padding: 0.2rem;
+    margin-left: 30rem;
     position: relative;
   }
 .cardProperty{
