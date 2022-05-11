@@ -11,6 +11,7 @@ import { ApiService } from '../service/api.service';
 export class ApiServiceGuard implements CanActivate {
   constructor(private auth: ApiService, private router: Router) {
 
+
   }
   canActivate() {
     return true;
