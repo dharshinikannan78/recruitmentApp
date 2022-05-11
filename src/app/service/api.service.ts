@@ -1,43 +1,76 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Injectable, OnInit } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { Observable } from 'rxjs';
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
+  url = environment.apiUrl
 
-  CandidateDetailsUrl = 'https://localhost:44310/api/Registration';
-  candidateDetailsUrl = "https://localhost:44310/api/Registration/GetAllEmp";
-  archive = "https://localhost:44310/api/Registration/GetAllEmp?status="
-  isArchive = "https://localhost:44310/api/Registration/GetAllEmp?value=archived"
-  adminLoginPanel = 'https://localhost:44310/api/User/Login';
-  mail = 'https://localhost:44310/api/Registration/Email?obj=';
-  getApplicantId = "https://localhost:44310/api/Registration/applicant?obj=";
-  updatestatus = "https://localhost:44310/api/Registration";
-  deleteCandidateUrl = "https://localhost:44310/api/Registration/delete?id=";
-  uploadFileAttachmentUrl = 'https://localhost:44310/api/Fileattachment';
-  getAttachmentDetailstableurl = "https://localhost:44310/api/Fileattachment/atttchmentFile";
-  getdownloadAttachmentFileUrl = "https://localhost:44310/api/Fileattachment/data?id=";
-  attachmentDetailUrl = "https://localhost:44310/api/Fileattachment/GetAttachmentDetails?candidateId=";
+  CandidateDetailsUrl = this.url + "Registration/Registration";
+  candidateDetailsUrl = this.url + "Registration/AllCandidates";
+  archive = this.url + "Registration/AllCandidates?status="
+  updatestatus = this.url + "Registration/updateCandidateDetails";
+  mail = this.url + "Registration/Email?obj=";
+  isArchive = this.url + "Registration/GetAllEmp?value=archived";
+  adminLoginPanel = this.url + "User/Login";
+  getApplicantId = this.url + "Registration/applicant?obj=";
+  deleteCandidateUrl = this.url + "Registration/delete?id=";
+  uploadFileAttachmentUrl = this.url + "Fileattachment/Attachment";
+  getAttachmentDetailstableurl = this.url + "Fileattachment/atttchmentFile";
+  getdownloadAttachmentFileUrl = this.url + "Fileattachment/data?id=";
+  attachmentDetailUrl = this.url + "Fileattachment/GetAttachmentDetails?candidateId=";
+  jwtToken = this.url + "jwt";
 
+ 
   constructor(private http: HttpClient) { }
+  
+   public  headers = new HttpHeaders ({
+    'content-type': 'application/json',
+    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0c3ViamVjdCIsIk5hbWUiOiJzdHJpbmciLCJlbWFpbCI6InN0cmluZyIsImV4cCI6MTY1NzM2MDcxNSwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NDQzMTAiLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo0NDMxMCJ9.6k3raxrLtYipDMwJmmThAohHN2Dy21SZwrqrrsDqDdM'
+  })
 
-  postAdminLoginPanel(adminLoginData: any) {
-    return this.http.post(this.adminLoginPanel, adminLoginData);
+
+  getToken() {
+    return this.http.get(this.jwtToken)
   }
-  // archiveDetails(){
-  //   return this.http.get(this.isArchive)
+
+  // postAdminLoginPanel(adminLoginData: any):Observable<any> {
+  //   const headers = new HttpHeaders();
+    
+  //   // return this.http.post(this.adminLoginPanel, adminLoginData, options).subscribe(Response =>{
+  //   //   console.log(Response);
+  //   // });
   // }
 
+
+  
+  
+
+
+
+
+
+
+
+
+
+
   archiveStatus(status: any) {
-    return this.http.get(this.archive + status)
+    return this.http.get(this.archive + status, {headers:this.headers})
   }
+
   CandidateDetails(candidatePostData: any) {
     return this.http.post(this.CandidateDetailsUrl, candidatePostData);
   }
 
+  getcandidateDetails(): Observable<any> {
 
-  getcandidateDetails() {
-    return this.http.get(this.candidateDetailsUrl);
+    return this.http.get(this.candidateDetailsUrl,  { headers: this.headers})
+
   }
 
   downloadAttchments(attachment: number) {
