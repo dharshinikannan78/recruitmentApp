@@ -25,6 +25,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { InterpectorService } from './interpector.service';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 
 
   ],
-  providers: [],
+  providers: [InterpectorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

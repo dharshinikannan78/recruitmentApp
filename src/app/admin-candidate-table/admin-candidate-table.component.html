@@ -1,77 +1,72 @@
-<section class="cardDesign">
-
-
+<!-- <section class="cardDesign">
     <mat-card class="cardProperty cardDesign">CANDIDATE DETAILS</mat-card>
-
-    <diV class="container">
-        <div class="row mt-5">
-            <div class="col-1">
+     <diV class="container">
+        <div class="row mt-5 d-flex">
+            <div class="col-1 justify-content-around">
                 <button *ngIf="!Status" class="btn btn-danger " type="button"
                     (click)="getarchiveDetails()">Archive</button>
                 <button *ngIf="Status" class="btn btn-danger" type="button" (click)="getAllDetails()">Active</button>
             </div>
-            <div class="col-2">
+            <div class="col-2 justify-content-around">
                 <div class="buttonView">
                     <button (click)="getRegisterPage()" class="btn btn-primary"><i class="bi bi-plus-lg"></i>Add
                     </button>
                 </div>
             </div>
-            <div class="col-4">
+            <div class="col-4 justify-content-around">
                 <input type="text" class="form-control searchBox" placeholder="Search" [(ngModel)]="searchValue">
             </div>
         </div>
     </diV>
-    <div class="container">
+    <div class="container-fluid">
         <div class="row mt-5">
-            <mat-card appMaterialElevation raisedElevation="16"
-                *ngFor="let candidateList of getCandidateList | filter : searchValue " class="example-card"
-                data-toggle="modal" (click)="getCandidateDetails(candidateList)" data-target="#bootstrapModel">
-                <mat-card-title>
-                    <div class="row mt-2">
-                        <div class="col-2">
-                            <i class="bi bi-person-circle iconView"> </i>
-                        </div>
-                        <div class="col-6  listViewStyle">
-                            {{candidateList.name}}
-                        </div>
-                    </div>
-                </mat-card-title>
-                <mat-card-subtitle>
-                    <div class="row mt-4">
-                        <div class="col-2">
-                            <i class="bi bi-envelope-fill iconView"></i>
-                        </div>
-                        <div class="col-8">
-                            {{candidateList.emailId}}
-                        </div>
-                    </div>
-                    <div class="row mt-2">
-                        <div class="col-2">
-                            <i class="bi bi-telephone-fill iconView"></i>
-                        </div>
-                        <div class="col-5">
-                            {{candidateList.phoneNumber}}
-                        </div>
-                    </div>
-                </mat-card-subtitle>
-
-                <mat-card-content>
-                    <div class="row">
-                        <div class="col ">
-                            <div class="apllicantView">
-                                {{candidateList.applicantStatus}}
-
+            <div class="col-md-3" *ngFor="let candidateList of getCandidateList | filter : searchValue " class="example-card"
+            data-toggle="modal" (click)="getCandidateDetails(candidateList)" data-target="#bootstrapModel">
+                <mat-card appMaterialElevation raisedElevation="16">
+                    <mat-card-title>
+                        <div class="row mt-2">
+                            <div class="col-2">
+                                <i class="bi bi-person-circle iconView"> </i>
+                            </div>
+                            <div class="col-10 justify-content-center listViewStyle">
+                                {{candidateList.name}}
                             </div>
                         </div>
-                    </div>
+                    </mat-card-title>
+                    <mat-card-subtitle>
+                        <div class="row mt-4">
+                            <div class="col-2">
+                                <i class="bi bi-envelope-fill iconView"></i>
+                            </div>
+                            <div class="col-10">
+                                {{candidateList.emailId}}
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-2">
+                                <i class="bi bi-telephone-fill iconView"></i>
+                            </div>
+                            <div class="col-5">
+                                {{candidateList.phoneNumber}}
+                            </div>
+                        </div>
+                    </mat-card-subtitle>
+                    <mat-card-content>
+                        <div class="row">
+                            <div class="col ">
+                                <div class="apllicantView">
+                                    {{candidateList.applicantStatus}}
 
-                </mat-card-content>
-            </mat-card>
+                                </div>
+                            </div>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
         </div>
     </div>
 </section>
 <div>
-
 
     <div class="modal" [style.display]="showModal ? 'block' : 'none'">
         <div class="modal-dialog">
@@ -196,4 +191,75 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
+
+
+<section class="adminTable" id="adminTable">
+    <div class="container">
+
+
+        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+            <input type="radio" class="btn-check" value="grid" [(ngModel)]="value" name="btnradio" id="btnradio1" autocomplete="off">
+            <label class="btn btn-outline-primary" for="btnradio1">Radio 1</label>
+
+            <input type="radio" class="btn-check" value="list" [(ngModel)]="value" name="btnradio" id="btnradio2"
+                autocomplete="off">
+            <label class="btn btn-outline-primary" for="btnradio2">Radio 2</label>
+
+
+        </div>
+
+        <div class="viewchanger" *ngIf="value === 'grid'">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
+                <div class="col" *ngFor="let candidateList of getCandidateList | filter : searchValue ">
+                    <div class="card h-100 d-flex justify-content-center">
+                        <div class="imagewin d-flex justify-content-center pt-4 pb-2">
+                            <img src="../../assets/thumb.jpg" class="card-img-top b50" alt="...">
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">{{ candidateList.name }}</h3>
+                            <p class="card-text">{{ candidateList.phoneNumber }}</p>
+                            <p class="card-text">{{ candidateList.emailId }}</p>
+                            <div class="wrap d-flex justify-content-center">
+                                <h4 class="card-title roleBadge d-flex justify-content-center" [ngClass]="{
+                                'greenbutton':candidateList.applicantStatus === 'Selected',
+                                'bluebutton':candidateList.applicantStatus === 'Open',
+                                'redbutton':candidateList.applicantStatus === 'Rejected'
+                              }">{{ candidateList.applicantStatus }}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="viewWrap"  *ngIf="value === 'list'">
+            <table class="table table-borderless align-middle">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Phone Number</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="table-light" *ngFor="let testab of getCandidateList | filter : searchValue ">
+                        <td class="d-flex  align-items-center" scope="col">
+                            <div class="imagewin d-flex justify-content-center">
+                                <img src="../../assets/thumb.jpg" class="card-img-top b50" alt="...">
+                            </div>
+                            {{ testab.name }}
+                        </td>
+                        <td>{{ testab.phoneNumber }}</td>
+                        <td>{{ testab.emailId }}</td>
+                        <td [ngClass]="{
+                    'text-success':testab.applicantStatus === 'Selected',
+                    'text-primary':testab.applicantStatus === 'Open',
+                    'text-danger':testab.applicantStatus === 'Rejected'
+                  }">{{ testab.applicantStatus }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

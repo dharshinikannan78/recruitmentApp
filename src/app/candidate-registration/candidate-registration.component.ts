@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../service/api.service';
 import Swal from 'sweetalert2';
-import { IfStmt } from '@angular/compiler';
+import { Router } from '@angular/router';
 @Component({
 
   selector: 'app-candidate-registration',
@@ -10,6 +10,7 @@ import { IfStmt } from '@angular/compiler';
   styleUrls: ['./candidate-registration.component.scss']
 })
 export class CandidateRegistrationComponent implements OnInit {
+
 
   ischeckMail: boolean = true;
   valueOfMail: any;
@@ -22,7 +23,7 @@ export class CandidateRegistrationComponent implements OnInit {
   isShowError: boolean = false;
 
   form: FormGroup = new FormGroup({
-    Name: new FormControl('', Validators.required),
+    Name: new FormControl(''),
     EmailId: new FormControl('', [Validators.required, Validators.pattern(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]),
     phoneNumber: new FormControl('', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]),
     EducationDetails: new FormControl(''),
@@ -41,7 +42,7 @@ export class CandidateRegistrationComponent implements OnInit {
     filesResume: new FormControl('', Validators.required),
   })
 
-  constructor(private registrationService: ApiService) {
+  constructor(private registrationService: ApiService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -79,6 +80,8 @@ export class CandidateRegistrationComponent implements OnInit {
     candidateDetails.FileLocation = this.attachmentPath.toString();
     this.registrationService.CandidateDetails(candidateDetails).subscribe((dataElement: any) => {
       console.log(dataElement, 'dataElement')
+      localStorage.setItem('token', dataElement.token)
+      console.log(localStorage, 'local')
       Swal.fire({
         text: 'Register Sucessfully!',
         icon: 'success',
@@ -86,6 +89,7 @@ export class CandidateRegistrationComponent implements OnInit {
       });
       this.form.reset();
     });
+    console.log(this.form, 'form')
   }
 
   uploadcandidateFile = (files: any, fileType: string) => {
@@ -94,9 +98,13 @@ export class CandidateRegistrationComponent implements OnInit {
     formData.append('file', filetoUpoload, filetoUpoload.name);
     formData.append('fileType', fileType);
     this.registrationService.uploadFileDetails(formData).subscribe((data: any) => {
+      console.log(data, 'file')
       this.attachmentId.push(data.attachmentId);
       this.attachmentPath.push(data.attachmentPath);
     });
+  }
+  adminPage() {
+    this.router.navigate(["adminpanel"])
   }
 }
 

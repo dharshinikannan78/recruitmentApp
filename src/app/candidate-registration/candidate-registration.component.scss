@@ -1,9 +1,23 @@
+section {
+  height: 100vh;
+}
 .cardProperty{
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
     padding: 1.5%;
     font-size: large;
     color: #fff;
+  }
+  .adminLogin{
+    color: #a1a2a5;
+    cursor: pointer;
+    font-weight: 700;
+    float: right;
+  }
+  .adminLogin:hover{
+   color: #041f5f !important;
+   text-decoration: underline;
+ 
   }
   .my-label > label {
     display: inline-block;
@@ -127,4 +141,7 @@ input.ng-touched.ng-invalid {
   -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
   box-shadow: inset 0 0 6px rgba(0,0,0,.3);
   background-color: #22577E;
+}
+.mr-0 {
+  margin-right: 0!important;
 }

@@ -2,18 +2,28 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../service/api.service';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+
 @Component({
   selector: 'app-admin-panel',
   templateUrl: './admin-panel.component.html',
   styleUrls: ['./admin-panel.component.scss']
 })
+
 export class AdminPanelComponent implements OnInit {
 
-
+  entryData: any;
+  finalData: any;
   public loginForm!: FormGroup
   submitted = false;
-
-  constructor(private registrationService: ApiService, private formBuilder: FormBuilder, private router: Router) { }
+  bearerToken: any;
+  constructor(private registrationService: ApiService, private formBuilder: FormBuilder, private router: Router) {
+    // this.registrationService.getToken().subscribe(token => {
+    //   console.log(token , 'token')
+    //   this.bearerToken = token; 
+    // })
+    // localStorage.setItem('token',this.bearerToken)
+  }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -24,9 +34,9 @@ export class AdminPanelComponent implements OnInit {
   thisAdminValid() {
     if (this.loginForm.invalid) {
       return true;
-      
+
     }
-     return false;
+    return false;
   }
 
   get f() { return this.loginForm.controls; }
@@ -34,14 +44,15 @@ export class AdminPanelComponent implements OnInit {
 
   adminCredentials(post: any) {
     this.submitted = true;
-    if (this.loginForm.invalid) {
-    } else {
-      this.registrationService.postAdminLoginPanel(post).subscribe((data: any) => {
+
+    console.log(post, 'post')
+     if (this.loginForm.valid) {
+     } else {
+      this.registrationService.postAdminLoginPanel(post)
         this.router.navigate(['table'])
-      })
-    }
+     }
     this.loginForm.reset()
   }
 
-
-}
+  }
+  

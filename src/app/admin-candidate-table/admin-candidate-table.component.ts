@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
 import { ApiService } from '../service/api.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+// import { Http, Headers, Response } from '@angular/Http';
 
 @Component({
   selector: 'app-admin-candidate-table',
@@ -32,6 +33,10 @@ export class AdminCandidateTableComponent implements OnInit {
   remarks: any
   isRemark: boolean = true
   expectedCtc: any
+  style :any 
+  style1 :any
+  viewchanger:boolean = true;
+  value:any
   constructor(private registrationService: ApiService, private router: Router) { }
 
   ngOnInit(): void {
@@ -60,6 +65,16 @@ export class AdminCandidateTableComponent implements OnInit {
     this.Status = false;
     this.registrationService.getcandidateDetails().subscribe((data: any) => {
       this.getCandidateList = data;
+      if(this.getCandidateList.applicantStatus == 'Rejected') {
+        this.style = true;
+      } else if(this.getCandidateList.applicantStatus == 'Selected')
+      {
+        this.style1 = true;
+      // }else   
+      // {
+      //   this.style2 = true;
+      // }
+      }
     });
   }
 
@@ -116,8 +131,6 @@ export class AdminCandidateTableComponent implements OnInit {
       console.log(data, 'data')
     });
   }
-
-
 
   onChange(event: any) {
     this.applicantStatus = event.target.value;

@@ -1,11 +1,23 @@
 <section>
-    <mat-card class="cardProperty"><img src="../../assets/Intsyslogo.png" alt="system picture" width="10%" height="10%">
-    </mat-card>
-    <div class="row mt-5">
+    <!-- <div class="row">
+        <div class="">
+            <mat-card class="cardProperty"><img src="../../assets/Intsyslogo.png" alt="system picture" width="10%"
+                    height="10%">
+            </mat-card>
+        </div>
+    </div> -->
+    <nav class="navbar navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="../../assets/Intsyslogo.png" width="100" height="45">
+            </a>
+        </div>
+    </nav>
+    <div class="row mt-5 mr-0">
         <div class="col-6">
             <img src="../../../assets/register.png" alt="system picture" width="90%" height="80%">
         </div>
-        <div class="col-5">
+        <div class="col-6">
             <div class="container">
                 <div class="row">
                     <h1 class="title mt-5 mb-4">Registration Form</h1>
@@ -15,7 +27,7 @@
                             <div class="my-label required">
                                 <label class="form-label">Name</label>
                                 <input type="email" formControlName="Name" class="form-control"
-                                    aria-describedby="emailHelp" placeholder="Sam"
+                                    aria-describedby="emailHelp" placeholder="Enter your Name"
                                     [ngClass]="{ 'is-invalid': submitted && f.Name.errors }">
                                 <span class="text-danger" *ngIf="!form.controls['Name'].valid && 
                     form.controls['Name']?.touched"> Name is required *</span>
@@ -30,7 +42,7 @@
                                 <span class="text-danger" *ngIf="!form.controls['EmailId'].valid && 
                         form.controls['EmailId']?.touched">Email is required *</span>
                                 <div class="text-danger" style="margin-top: 2%;" *ngIf="isShowError == true">
-                                    User Already exist Please Enter the valid Email Address
+                                    User <b>Already Exist</b> Enter valid Email Address
                                 </div>
                             </div>
                         </div>
@@ -67,7 +79,7 @@
                                     placeholder="Web Developer, BackEnd Developer, ..."
                                     [ngClass]="{ 'is-invalid': submitted && f.CurrentRole.errors }">
                                 <span class="text-danger" *ngIf="!form.controls['CurrentRole'].valid && 
-                        form.controls['CurrentRole']?.touched">CurrentRole set is required *</span>
+                        form.controls['CurrentRole']?.touched">Current Position is required *</span>
                             </div>
                         </div>
                         <div class="mb-3">
@@ -107,12 +119,14 @@
                         form.controls['ExpectedCtc']?.touched">Expected Salary set is required *</span>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label"> Position Applied For</label>
-                            <input type="text" formControlName="PositionApplied" class="form-control"
-                                placeholder="Team Leader , Manager, ..."
-                                [ngClass]="{ 'is-invalid': submitted && f.PositionApplied.errors }">
-                            <span class="text-danger" *ngIf="!form.controls['PositionApplied'].valid && 
+                            <div class="my-label required">
+                                <label class="form-label"> Position Applied For</label>
+                                <input type="text" formControlName="PositionApplied" class="form-control"
+                                    placeholder="Team Leader , Manager, ..."
+                                    [ngClass]="{ 'is-invalid': submitted && f.PositionApplied.errors }">
+                                <span class="text-danger" *ngIf="!form.controls['PositionApplied'].valid && 
                         form.controls['PositionApplied']?.touched">Position is required *</span>
+                            </div>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Availability</label>
@@ -152,7 +166,7 @@
                         <div class="mb-3">
                             <label class="form-label">Addition Message</label>
                             <input type="text-area" formControlName="MessageField" class="form-control"
-                                placeholder="Additional Messages ......."
+                                placeholder="Additional Messages......."
                                 [ngClass]="{ 'is-invalid': submitted && f.MessageField.errors }">
                             <span class="text-danger" *ngIf="!form.controls['MessageField'].valid && 
                       form.controls['MessageField']?.touched">MessageField
@@ -179,4 +193,5 @@
             </div>
         </div>
     </div>
+    <h6 class="adminLogin" (click)="adminPage()">Login</h6>
 </section>
