@@ -7,9 +7,9 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
+
 export class ApiService {
   url = environment.apiUrl
-
   CandidateDetailsUrl = this.url + "Registration/Registration";
   candidateDetailsUrl = this.url + "Registration/AllCandidates";
   archive = this.url + "Registration/AllCandidates?status="
