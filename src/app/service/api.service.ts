@@ -8,8 +8,10 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 
+
 export class ApiService {
-  url = environment.apiUrl
+  url = environment
+  
   CandidateDetailsUrl = this.url + "Registration/Registration";
   candidateDetailsUrl = this.url + "Registration/AllCandidates";
   archive = this.url + "Registration/AllCandidates?status="
@@ -35,6 +37,7 @@ export class ApiService {
 
 
   getToken() {
+    let str = "geetha";
     return this.http.get(this.jwtToken)
   }
 
